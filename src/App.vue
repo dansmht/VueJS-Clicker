@@ -4,7 +4,7 @@
     <the-nav />
     <main>
       <div class="container main-wrapper">
-        <router-view />
+        <router-view :upgrades="upgrades" />
         <monster-block
           :current-monster-index="currentMonsterIndex"
           :damage="damage"
@@ -30,6 +30,127 @@ export default {
       damage: 1,
       damagePerSec: 2,
       currentMonsterIndex: 1,
+      upgrades: [{
+        id: 1,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 1,
+      }, {
+        id: 2,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 10,
+      }, {
+        id: 3,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 100,
+      }, {
+        id: 4,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 1000,
+      }, {
+        id: 5,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 10000,
+      }, {
+        id: 6,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 10000,
+      }, {
+        id: 7,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 100000,
+      }, {
+        id: 8,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 1000000,
+      }, {
+        id: 9,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 1000000,
+      }, {
+        id: 10,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 11000000,
+      }, {
+        id: 11,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 11000000,
+      }, {
+        id: 12,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 11000000,
+      }, {
+        id: 13,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 11000000,
+      }, {
+        id: 14,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 11000000,
+      }, {
+        id: 15,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 11000000,
+      }, {
+        id: 16,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 11000000,
+      }, {
+        id: 17,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 11000000,
+      }, {
+        id: 18,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 10000001,
+      }, {
+        id: 19,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 11000000,
+      }, {
+        id: 20,
+        name: 'Test name',
+        description: 'Effect',
+        level: 0,
+        cost: 11000000,
+      }],
     };
   },
   methods: {

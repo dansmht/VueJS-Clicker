@@ -14,6 +14,7 @@ routes.forEach((route) => {
     name: route.name,
     path: route.path,
     component: route.component,
+    props: route.props || null,
   });
 });
 

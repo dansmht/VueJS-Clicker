@@ -8,17 +8,17 @@
     </div>
     <div class="description">
       <h4 class="title">
-        Название способности
+        {{ name }}
       </h4>
       <p class="text">
-        Эффект от способности
+        {{ description }}
       </p>
       <div class="parameters">
         <p class="param level">
-          Уровень: 1
+          Уровень: {{ level }}
         </p>
         <p class="param cost">
-          Стоимость:
+          Стоимость: {{ abbreviatedCost }}
         </p>
       </div>
     </div>
@@ -30,6 +30,7 @@
 
 <script>
 import IconPlus from '@/components/common/Icons/IconPlus.vue';
+import { abbreviateNumber } from '@/utils/abbreviateNumber';
 
 export default {
   name: 'UpgradeCard',
@@ -38,6 +39,27 @@ export default {
     idx: {
       type: Number,
       required: true,
+    },
+    name: {
+      type: Number,
+      required: true,
+    },
+    description: {
+      type: Number,
+      required: true,
+    },
+    level: {
+      type: Number,
+      required: true,
+    },
+    cost: {
+      type: Number,
+      required: true,
+    },
+  },
+  computed: {
+    abbreviatedCost() {
+      return abbreviateNumber(this.cost);
     },
   },
 };

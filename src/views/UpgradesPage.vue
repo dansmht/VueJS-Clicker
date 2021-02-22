@@ -3,9 +3,13 @@
     <div class="scroll-wrapper">
       <ul class="list">
         <upgrade-card
-          v-for="idx in 20"
-          :key="idx"
-          :idx="idx"
+          v-for="upgrade in upgrades"
+          :key="upgrade.id"
+          :idx="upgrade.id"
+          :name="upgrade.name"
+          :description="upgrade.description"
+          :level="upgrade.level"
+          :cost="upgrade.cost"
         />
       </ul>
     </div>
@@ -23,10 +27,19 @@ import PurchaseMenu from '@/components/UpgradesPage/PurchaseMenu.vue';
 export default {
   name: 'UpgradesPage',
   components: { PurchaseMenu, UpgradeCard },
+  props: {
+    upgrades: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       purchaseMultiplier: 1,
     };
+  },
+  created() {
+    console.log(this.upgrades);
   },
   methods: {
     onChangePurchaseMultiplier(val) {
