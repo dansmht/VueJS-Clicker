@@ -2,7 +2,7 @@
   <li class="upgrade-card">
     <div class="img">
       <img
-        src="../../assets/images/upgrades/upgrade_1.png"
+        :src="require(`../../assets/images/upgrades/upgrade_${idx}.png`)"
         alt="upgrade"
       >
     </div>
@@ -34,6 +34,12 @@ import IconPlus from '@/components/common/Icons/IconPlus.vue';
 export default {
   name: 'UpgradeCard',
   components: { IconPlus },
+  props: {
+    idx: {
+      type: Number,
+      required: true,
+    },
+  },
 };
 </script>
 

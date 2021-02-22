@@ -2,22 +2,11 @@
   <div class="update-page">
     <div class="scroll-wrapper">
       <ul class="list">
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
-        <upgrade-card />
+        <upgrade-card
+          v-for="idx in 20"
+          :key="idx"
+          :idx="idx"
+        />
       </ul>
     </div>
     <purchase-menu
