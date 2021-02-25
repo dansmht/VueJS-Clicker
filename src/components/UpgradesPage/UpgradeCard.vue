@@ -22,8 +22,12 @@
         </p>
       </div>
     </div>
-    <div class="icon">
-      <icon-plus />
+    <div
+      class="icon"
+      :class="{gray: fullCost > gold}"
+      @click="onClickHandler"
+    >
+      <icon-plus :color="iconColor" />
     </div>
   </li>
 </template>
@@ -31,6 +35,7 @@
 <script>
 import IconPlus from '@/components/common/Icons/IconPlus.vue';
 import { abbreviateNumber } from '@/utils/abbreviateNumber';
+import { calcUpgradeCostAndLevelsToUp } from '@/utils/formulas';
 
 export default {
   name: 'UpgradeCard',
@@ -41,11 +46,11 @@ export default {
       required: true,
     },
     name: {
-      type: Number,
+      type: String,
       required: true,
     },
     description: {
-      type: Number,
+      type: String,
       required: true,
     },
     level: {
@@ -56,10 +61,47 @@ export default {
       type: Number,
       required: true,
     },
+    gold: {
+      type: Number,
+      required: true,
+    },
+    purchaseCount: {
+      type: Number,
+      required: true,
+    },
   },
   computed: {
     abbreviatedCost() {
-      return abbreviateNumber(this.cost);
+      return abbreviateNumber(this.fullCost);
+    },
+    fullCostAndLevelsToUp() {
+      return calcUpgradeCostAndLevelsToUp(
+        this.purchaseCount,
+        this.level,
+        this.cost,
+        this.idx,
+        this.gold,
+      );
+    },
+    fullCost() {
+      return this.fullCostAndLevelsToUp.fullCost;
+    },
+    levelsToUp() {
+      return this.fullCostAndLevelsToUp.levelsToUp;
+    },
+    iconColor() {
+      const doc = getComputedStyle(document.documentElement);
+      return this.gold >= this.fullCost
+        ? doc.getPropertyValue('--font-main-color')
+        : doc.getPropertyValue('--font-sub-color');
+    },
+  },
+  methods: {
+    onClickHandler() {
+      if (this.gold >= this.fullCost) {
+        this.$emit('writeOffGold', this.fullCost);
+        this.$emit('levelUpSelf', { id: this.idx, levels: this.levelsToUp });
+      }
     },
   },
 };

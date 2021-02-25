@@ -10,12 +10,16 @@
           :description="upgrade.description"
           :level="upgrade.level"
           :cost="upgrade.cost"
+          :gold="gold"
+          :purchase-count="purchaseCount"
+          @writeOffGold="writeOffGold"
+          @levelUpSelf="levelUpSelf"
         />
       </ul>
     </div>
     <purchase-menu
-      :purchase-multiplier="purchaseMultiplier"
-      @changePurchaseMultiplier="onChangePurchaseMultiplier"
+      :purchase-count="purchaseCount"
+      @changePurchaseCount="onChangePurchaseCount"
     />
   </div>
 </template>
@@ -32,19 +36,29 @@ export default {
       type: Array,
       required: true,
     },
+    gold: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
-      purchaseMultiplier: 1,
+      purchaseCount: 1,
     };
   },
   created() {
     console.log(this.upgrades);
   },
   methods: {
-    onChangePurchaseMultiplier(val) {
-      this.purchaseMultiplier = val;
+    onChangePurchaseCount(val) {
+      this.purchaseCount = val;
       console.log('onChangePurchaseMultiplier', val);
+    },
+    writeOffGold(goldToWaste) {
+      this.$emit('writeOffGold', goldToWaste);
+    },
+    levelUpSelf(payload) {
+      this.$emit('levelUpSelf', payload);
     },
   },
 };

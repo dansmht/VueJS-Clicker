@@ -12,13 +12,13 @@
       width="1"
       height="30"
       transform="rotate(90 30 14)"
-      fill="#FAFAFA"
+      :fill="color"
     />
     <rect
       x="14"
       width="1"
       height="30"
-      fill="#FAFAFA"
+      :fill="color"
     />
   </svg>
 </template>
@@ -26,5 +26,11 @@
 <script>
 export default {
   name: 'IconPlus',
+  props: {
+    color: {
+      type: String,
+      default: '#FAFAFA',
+    },
+  },
 };
 </script>

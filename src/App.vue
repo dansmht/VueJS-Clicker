@@ -4,7 +4,12 @@
     <the-nav />
     <main>
       <div class="container main-wrapper">
-        <router-view :upgrades="upgrades" />
+        <router-view
+          :upgrades="upgrades"
+          :gold="gold"
+          @writeOffGold="writeOffGold"
+          @levelUpSelf="levelUpSelf"
+        />
         <monster-block
           :current-monster-index="currentMonsterIndex"
           :damage="damage"
@@ -25,7 +30,7 @@ export default {
   components: { MonsterBlock, TheNav, StateBar },
   data() {
     return {
-      gold: 0,
+      gold: 100,
       goldPerSec: 0,
       damage: 1,
       damagePerSec: 2,
@@ -35,37 +40,37 @@ export default {
         name: 'Test name',
         description: 'Effect',
         level: 0,
-        cost: 1,
+        cost: 10,
       }, {
         id: 2,
         name: 'Test name',
         description: 'Effect',
         level: 0,
-        cost: 10,
+        cost: 50,
       }, {
         id: 3,
         name: 'Test name',
         description: 'Effect',
         level: 0,
-        cost: 100,
+        cost: 250,
       }, {
         id: 4,
         name: 'Test name',
         description: 'Effect',
         level: 0,
-        cost: 1000,
+        cost: 1250,
       }, {
         id: 5,
         name: 'Test name',
         description: 'Effect',
         level: 0,
-        cost: 10000,
+        cost: 6250,
       }, {
         id: 6,
         name: 'Test name',
         description: 'Effect',
         level: 0,
-        cost: 10000,
+        cost: 31250,
       }, {
         id: 7,
         name: 'Test name',
@@ -156,6 +161,14 @@ export default {
   methods: {
     nextMonster() {
       this.currentMonsterIndex++;
+    },
+    writeOffGold(goldToWaste) {
+      console.log('App writeOffGold', goldToWaste);
+      this.gold -= goldToWaste;
+    },
+    levelUpSelf({ id, levels }) {
+      const upgrade = this.upgrades.find((u) => u.id === id);
+      upgrade.level += levels;
     },
   },
 };

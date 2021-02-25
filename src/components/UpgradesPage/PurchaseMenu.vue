@@ -8,7 +8,7 @@
         v-for="item in items"
         :key="item.text"
         class="list-item"
-        :class="{active: purchaseMultiplier === item.value}"
+        :class="{active: purchaseCount === item.value}"
         @click="onClickHandler(item.value)"
       >
         {{ item.text }}
@@ -21,7 +21,7 @@
 export default {
   name: 'PurchaseMenu',
   props: {
-    purchaseMultiplier: {
+    purchaseCount: {
       type: Number,
       required: true,
     },
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     onClickHandler(value) {
-      this.$emit('changePurchaseMultiplier', value);
+      this.$emit('changePurchaseCount', value);
     },
   },
 };
