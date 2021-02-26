@@ -27,3 +27,5 @@ export const calcUpgradeCostAndLevelsToUp = (count, level, baseCost, upgradeIdx,
   }
   return { fullCost, levelsToUp };
 };
+
+export const calcGoldToEnroll = (currentMonsterIndex) => currentMonsterIndex;
