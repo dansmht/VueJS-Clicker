@@ -15,6 +15,8 @@
           :damage="damage"
           :damage-per-sec="damagePerSec"
           @nextMonster="nextMonster"
+          @enrollGold="enrollGold"
+          @hitMonster="hitMonster"
         />
       </div>
     </main>
@@ -30,6 +32,11 @@ export default {
   components: { MonsterBlock, TheNav, StateBar },
   data() {
     return {
+      total: {
+        clicks: 0,
+        gold: 0,
+        damage: 0,
+      },
       gold: 100,
       goldPerSec: 0,
       damage: 1,
@@ -162,13 +169,21 @@ export default {
     nextMonster() {
       this.currentMonsterIndex++;
     },
-    writeOffGold(goldToWaste) {
-      console.log('App writeOffGold', goldToWaste);
-      this.gold -= goldToWaste;
+    enrollGold(gold) {
+      this.gold += gold;
+    },
+    writeOffGold(gold) {
+      this.gold -= gold;
     },
     levelUpSelf({ id, levels }) {
       const upgrade = this.upgrades.find((u) => u.id === id);
       upgrade.level += levels;
+    },
+    hitMonster(damage, isByClick) {
+      if (isByClick) {
+        this.total.clicks++;
+      }
+      this.total.damage += damage;
     },
   },
 };

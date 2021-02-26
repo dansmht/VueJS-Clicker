@@ -18,6 +18,7 @@
 import BaseMonster from '@/components/MonsterBlock/Monsters/BaseMonster.vue';
 import MonsterParams from '@/components/MonsterBlock/MonsterParams.vue';
 import SkillsArea from '@/components/MonsterBlock/SkillsArea.vue';
+import { calcGoldToEnroll } from '@/utils/formulas';
 import { getRandomInRange } from '@/utils/getRandomInRange';
 
 export default {
@@ -56,6 +57,7 @@ export default {
     currentHealthPoints(val) {
       if (val <= 0) {
         this.$emit('nextMonster');
+        this.$emit('enrollGold', calcGoldToEnroll(this.currentMonsterIndex));
       }
     },
     currentMonsterIndex(value) {
@@ -69,11 +71,13 @@ export default {
 
     setInterval(() => {
       this.currentHealthPoints -= this.damagePerSec;
+      this.$emit('hitMonster', this.damagePerSec, false);
     }, 1000);
   },
   methods: {
     hitMonster() {
       this.currentHealthPoints -= this.damage;
+      this.$emit('hitMonster', this.damage, true);
     },
     calcMonsterStats() {
       const hp = Math.floor(Math.random() * 10) + 10;

@@ -46,16 +46,12 @@ export default {
       purchaseCount: 1,
     };
   },
-  created() {
-    console.log(this.upgrades);
-  },
   methods: {
     onChangePurchaseCount(val) {
       this.purchaseCount = val;
-      console.log('onChangePurchaseMultiplier', val);
     },
-    writeOffGold(goldToWaste) {
-      this.$emit('writeOffGold', goldToWaste);
+    writeOffGold(gold) {
+      this.$emit('writeOffGold', gold);
     },
     levelUpSelf(payload) {
       this.$emit('levelUpSelf', payload);
