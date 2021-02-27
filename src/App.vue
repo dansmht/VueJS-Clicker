@@ -1,5 +1,8 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    @contextmenu.prevent
+  >
     <state-bar :gold="gold" />
     <the-nav />
     <main>
