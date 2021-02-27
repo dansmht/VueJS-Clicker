@@ -184,6 +184,14 @@ export default {
       }
     };
     window.addEventListener('storage', onStorage);
+
+    // second way
+    // window.addEventListener('storage', () => {
+    //   window.alert('another window or tab is working on the same localStorage');
+    //   window.close();
+    // }, false);
+    //
+    // localStorage.setItem('Sentinel', Math.random().toString());
   },
   methods: {
     nextMonster() {
