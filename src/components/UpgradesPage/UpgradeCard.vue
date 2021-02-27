@@ -23,6 +23,7 @@
       </div>
     </div>
     <div
+      v-tooltip="!isAvailable && 'You don\'t have enough gold'"
       class="icon"
       :class="{scalable: isAvailable}"
       @click="onClickHandler"

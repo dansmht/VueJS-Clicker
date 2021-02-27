@@ -6,6 +6,9 @@ import router from './router';
 Vue.config.productionTip = false;
 
 Vue.use(VTooltip);
+VTooltip.options.defaultPlacement = 'bottom';
+VTooltip.options.defaultOffset = 8;
+VTooltip.options.defaultDelay = { show: 500, hide: 100 };
 
 new Vue({
   router,

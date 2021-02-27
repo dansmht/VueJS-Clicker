@@ -1,8 +1,8 @@
 <template>
   <div
     class="monster"
-    @click="onClickHandler"
-    @contextmenu="onClickHandler"
+    @click.left="onClickHandler"
+    @click.right="onClickHandler"
   >
     <component :is="`${monsterName.toLowerCase()}-monster`" />
   </div>
