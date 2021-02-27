@@ -18,7 +18,9 @@
           Уровень: {{ level }}
         </p>
         <p class="param cost">
-          Стоимость: {{ abbreviatedCost }}
+          <span v-tooltip="formattedCost">
+            Стоимость: {{ abbreviatedCost }}
+          </span>
         </p>
       </div>
     </div>
@@ -40,11 +42,15 @@
 import IconPlus from '@/components/common/Icons/IconPlus.vue';
 import IconUpArrow from '@/components/common/Icons/IconUpArrow.vue';
 import { abbreviateNumber } from '@/utils/abbreviateNumber';
+import { formatNum } from '@/utils/formatNum';
 import { calcUpgradeCostAndLevelsToUp } from '@/utils/formulas';
 
 export default {
   name: 'UpgradeCard',
-  components: { IconUpArrow, IconPlus },
+  components: {
+    IconUpArrow,
+    IconPlus,
+  },
   props: {
     idx: {
       type: Number,
@@ -79,6 +85,9 @@ export default {
     abbreviatedCost() {
       return abbreviateNumber(this.fullCost);
     },
+    formattedCost() {
+      return formatNum(this.fullCost);
+    },
     fullCostAndLevelsToUp() {
       return calcUpgradeCostAndLevelsToUp(
         this.purchaseCount,
@@ -99,7 +108,8 @@ export default {
     },
     iconColor() {
       return this.isAvailable
-        ? getComputedStyle(document.documentElement).getPropertyValue('--font-main-color')
+        ? getComputedStyle(document.documentElement)
+          .getPropertyValue('--font-main-color')
         : '#454545';
     },
   },
@@ -107,7 +117,10 @@ export default {
     onClickHandler() {
       if (this.gold >= this.fullCost) {
         this.$emit('writeOffGold', this.fullCost);
-        this.$emit('levelUpSelf', { id: this.idx, levels: this.levelsToUp });
+        this.$emit('levelUpSelf', {
+          id: this.idx,
+          levels: this.levelsToUp,
+        });
       }
     },
   },
@@ -159,6 +172,10 @@ export default {
       .param {
         color: var(--font-sub-color);
         width: calc((var(--options-block-width) - 90px - 18px - 70px - 20px) / 2);
+
+        span {
+          color: var(--font-sub-color);
+        }
       }
     }
   }

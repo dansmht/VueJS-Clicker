@@ -2,7 +2,9 @@
   <div class="state-bar">
     <div class="container">
       <div class="gold">
-        <span v-tooltip="formattedGold">Gold: {{ abbreviatedGold }}</span>
+        <span v-tooltip="formattedGold">
+          Gold: {{ abbreviatedGold }}
+        </span>
       </div>
       <div class="diamonds">
         Diamonds:
@@ -13,6 +15,7 @@
 
 <script>
 import { abbreviateNumber } from '@/utils/abbreviateNumber';
+import { formatNum } from '@/utils/formatNum';
 
 export default {
   name: 'StateBar',
@@ -27,7 +30,7 @@ export default {
       return abbreviateNumber(this.gold);
     },
     formattedGold() {
-      return this.gold.toLocaleString('ru-RU');
+      return formatNum(this.gold);
     },
   },
 };

@@ -3,19 +3,25 @@
     <h3 class="name">
       {{ name }}
     </h3>
-    <div class="health-points">
-      HP: {{ currHP }}/{{ maxHP }}
+    <div
+      v-tooltip="`${formattedCurrHP} / ${formattedMaxHP}`"
+      class="health-wrapper"
+    >
+      <div class="health-points">
+        HP: {{ currHP }}/{{ maxHP }}
+      </div>
+      <monster-health-bar
+        :current="currentHealthPoints"
+        :max="maxHealthPoints"
+      />
     </div>
-    <monster-health-bar
-      :current="currentHealthPoints"
-      :max="maxHealthPoints"
-    />
   </div>
 </template>
 
 <script>
 import MonsterHealthBar from '@/components/MonsterBlock/MonsterHealthBar.vue';
 import { abbreviateNumber } from '@/utils/abbreviateNumber';
+import { formatNum } from '@/utils/formatNum';
 
 export default {
   name: 'MonsterParams',
@@ -41,6 +47,12 @@ export default {
     currHP() {
       return abbreviateNumber(this.currentHealthPoints);
     },
+    formattedMaxHP() {
+      return formatNum(this.maxHealthPoints);
+    },
+    formattedCurrHP() {
+      return formatNum(this.currentHealthPoints);
+    },
   },
 };
 </script>
@@ -58,9 +70,14 @@ export default {
     margin: 10px 0;
   }
 
-  .health-points {
-    font-size: var(--small-font);
-    margin-bottom: 10px;
+  .health-wrapper {
+    width: 100%;
+
+    .health-points {
+      font-size: var(--small-font);
+      margin-bottom: 10px;
+      text-align: center;
+    }
   }
 }
 </style>
