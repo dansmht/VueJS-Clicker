@@ -1,11 +1,11 @@
 <template>
   <div class="monster-block">
     <base-monster
-      :monster-name="monsterName"
+      :component-name="componentName"
       @hitMonster="hitMonster"
     />
     <monster-params
-      :name="monsterName"
+      :name="name"
       :current-health-points="currentHealthPoints"
       :max-health-points="maxHealthPoints"
     />
@@ -19,7 +19,7 @@ import BaseMonster from '@/components/MonsterBlock/Monsters/BaseMonster.vue';
 import MonsterParams from '@/components/MonsterBlock/MonsterParams.vue';
 import SkillsArea from '@/components/MonsterBlock/SkillsArea.vue';
 import { calcGoldToEnroll } from '@/utils/formulas';
-import { getRandomInRange } from '@/utils/getRandomInRange';
+import { getRandomAnotherIndex } from '@/utils/getRandom';
 
 export default {
   name: 'MonsterBlock',
@@ -42,14 +42,39 @@ export default {
     return {
       currentHealthPoints: 1,
       maxHealthPoints: 1,
-      monsterName: 'Rat',
-      monsterIdx: 0,
+      name: 'Rat',
+      componentName: 'rat-monster',
+      lastMonsterIdx: -1,
+      lastBossIdx: -1,
     };
   },
   computed: {
+    isBoss() {
+      return !(this.currentMonsterIndex % 10);
+    },
     monsters: {
       get() {
-        return ['Rat', 'Spider'];
+        return [{
+          name: 'Rat',
+          componentName: 'rat-monster',
+        }, {
+          name: 'Spider',
+          componentName: 'spider-monster',
+        }, {
+          name: 'Ebony Statue',
+          componentName: 'ebony-statue-monster',
+        }];
+      },
+    },
+    bosses: {
+      get() {
+        return [{
+          name: 'Rat King',
+          componentName: 'rat-king-monster',
+        }, {
+          name: 'Void Specter',
+          componentName: 'void-specter-monster',
+        }];
       },
     },
   },
@@ -58,6 +83,7 @@ export default {
       if (val <= 0) {
         this.$emit('nextMonster');
         this.$emit('enrollGold', calcGoldToEnroll(this.currentMonsterIndex));
+        this.$emit('killMonster', this.isBoss);
       }
     },
     currentMonsterIndex(value) {
@@ -85,14 +111,21 @@ export default {
       this.currentHealthPoints = hp;
     },
     rndMonster() {
-      const { length } = this.monsters;
-      let idx;
-      do {
-        idx = getRandomInRange(0, length - 1);
-      } while (this.monsterIdx === idx);
+      if (this.isBoss) {
+        const { length } = this.bosses;
+        this.lastBossIdx = getRandomAnotherIndex(this.lastBossIdx, length - 1);
 
-      this.monsterIdx = idx;
-      this.monsterName = this.monsters[idx];
+        this.setMonster(this.bosses, this.lastBossIdx);
+      } else {
+        const { length } = this.monsters;
+        this.lastMonsterIdx = getRandomAnotherIndex(this.lastMonsterIdx, length - 1);
+
+        this.setMonster(this.monsters, this.lastMonsterIdx);
+      }
+    },
+    setMonster(arr, idx) {
+      this.componentName = arr[idx].componentName;
+      this.name = arr[idx].name;
     },
   },
 };

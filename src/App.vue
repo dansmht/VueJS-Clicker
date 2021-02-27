@@ -20,6 +20,7 @@
           @nextMonster="nextMonster"
           @enrollGold="enrollGold"
           @hitMonster="hitMonster"
+          @killMonster="killMonster"
         />
       </div>
     </main>
@@ -39,10 +40,14 @@ export default {
         clicks: 0,
         gold: 0,
         damage: 0,
+        kills: {
+          monsters: 0,
+          bosses: 0,
+        },
       },
       gold: 1234567890,
       goldPerSec: 0,
-      damage: 1,
+      damage: 10,
       damagePerSec: 2,
       currentMonsterIndex: 1,
       upgrades: [{
@@ -212,6 +217,13 @@ export default {
         this.total.clicks++;
       }
       this.total.damage += damage;
+    },
+    killMonster(isBoss) {
+      if (isBoss) {
+        this.total.kills.bosses++;
+      } else {
+        this.total.kills.monsters++;
+      }
     },
   },
 };
