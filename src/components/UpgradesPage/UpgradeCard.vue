@@ -24,22 +24,26 @@
     </div>
     <div
       class="icon"
-      :class="{gray: fullCost > gold}"
+      :class="{scalable: isAvailable}"
       @click="onClickHandler"
     >
-      <icon-plus :color="iconColor" />
+      <component
+        :is="level ? 'icon-up-arrow' : 'icon-plus'"
+        :color="iconColor"
+      />
     </div>
   </li>
 </template>
 
 <script>
 import IconPlus from '@/components/common/Icons/IconPlus.vue';
+import IconUpArrow from '@/components/common/Icons/IconUpArrow.vue';
 import { abbreviateNumber } from '@/utils/abbreviateNumber';
 import { calcUpgradeCostAndLevelsToUp } from '@/utils/formulas';
 
 export default {
   name: 'UpgradeCard',
-  components: { IconPlus },
+  components: { IconUpArrow, IconPlus },
   props: {
     idx: {
       type: Number,
@@ -89,11 +93,13 @@ export default {
     levelsToUp() {
       return this.fullCostAndLevelsToUp.levelsToUp;
     },
+    isAvailable() {
+      return this.gold >= this.fullCost;
+    },
     iconColor() {
-      const doc = getComputedStyle(document.documentElement);
-      return this.gold >= this.fullCost
-        ? doc.getPropertyValue('--font-main-color')
-        : doc.getPropertyValue('--font-sub-color');
+      return this.isAvailable
+        ? getComputedStyle(document.documentElement).getPropertyValue('--font-main-color')
+        : '#454545';
     },
   },
   methods: {
@@ -160,14 +166,14 @@ export default {
     margin: 0 20px;
     width: 30px;
     height: 30px;
+
+    &.scalable:hover {
+      transform: scale(1.25);
+    }
   }
 
   &:first-child {
     margin-top: 0;
   }
-
-  //&:last-child {
-  //  margin-bottom: 0;
-  //}
 }
 </style>
