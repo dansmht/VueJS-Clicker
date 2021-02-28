@@ -18,7 +18,7 @@
 import BaseMonster from '@/components/MonsterBlock/Monsters/BaseMonster.vue';
 import MonsterParams from '@/components/MonsterBlock/MonsterParams.vue';
 import SkillsArea from '@/components/MonsterBlock/SkillsArea.vue';
-import { calcGoldToEnroll } from '@/utils/formulas';
+import { calcMonsterHP } from '@/utils/formulas';
 import { getRandomAnotherIndex } from '@/utils/getRandom';
 
 export default {
@@ -81,19 +81,15 @@ export default {
   watch: {
     currentHealthPoints(val) {
       if (val <= 0) {
-        this.$emit('nextMonster');
-        this.$emit('enrollGold', calcGoldToEnroll(this.currentMonsterIndex));
         this.$emit('killMonster', this.isBoss);
       }
     },
-    currentMonsterIndex(value) {
-      this.rndMonster();
-      this.calcMonsterStats(value);
+    currentMonsterIndex() {
+      this.generateMonster();
     },
   },
   created() {
-    this.rndMonster();
-    this.calcMonsterStats(this.currentMonsterIndex);
+    this.generateMonster();
 
     setInterval(() => {
       this.currentHealthPoints -= this.damagePerSec;
@@ -101,27 +97,30 @@ export default {
     }, 1000);
   },
   methods: {
+    generateMonster() {
+      this.rndMonster();
+      this.calcMonsterStats();
+    },
     hitMonster() {
       this.currentHealthPoints -= this.damage;
       this.$emit('hitMonster', this.damage, true);
     },
     calcMonsterStats() {
-      const hp = Math.floor(Math.random() * 10) + 10;
+      const hp = calcMonsterHP(this.currentMonsterIndex, this.isBoss);
       this.maxHealthPoints = hp;
       this.currentHealthPoints = hp;
     },
     rndMonster() {
       if (this.isBoss) {
-        const { length } = this.bosses;
-        this.lastBossIdx = getRandomAnotherIndex(this.lastBossIdx, length - 1);
-
+        this.lastBossIdx = this.getMonsterIndex(this.bosses.length, this.lastBossIdx);
         this.setMonster(this.bosses, this.lastBossIdx);
       } else {
-        const { length } = this.monsters;
-        this.lastMonsterIdx = getRandomAnotherIndex(this.lastMonsterIdx, length - 1);
-
+        this.lastMonsterIdx = this.getMonsterIndex(this.monsters.length, this.lastMonsterIdx);
         this.setMonster(this.monsters, this.lastMonsterIdx);
       }
+    },
+    getMonsterIndex(length, prevIndex) {
+      return getRandomAnotherIndex(prevIndex, length - 1);
     },
     setMonster(arr, idx) {
       this.componentName = arr[idx].componentName;

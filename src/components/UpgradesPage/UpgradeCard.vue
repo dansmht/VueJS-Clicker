@@ -11,7 +11,7 @@
         {{ name }}
       </h4>
       <p class="text">
-        {{ description }}
+        {{ `${description} ${fullValue}` }}
       </p>
       <div class="parameters">
         <p class="param level">
@@ -43,7 +43,7 @@ import IconPlus from '@/components/common/Icons/IconPlus.vue';
 import IconUpArrow from '@/components/common/Icons/IconUpArrow.vue';
 import { abbreviateNumber } from '@/utils/abbreviateNumber';
 import { formatNum } from '@/utils/formatNum';
-import { calcUpgradeCostAndLevelsToUp } from '@/utils/formulas';
+import { calcUpgradeInfo } from '@/utils/formulas';
 
 export default {
   name: 'UpgradeCard',
@@ -80,6 +80,10 @@ export default {
       type: Number,
       required: true,
     },
+    growthRate: {
+      type: Number,
+      required: true,
+    },
   },
   computed: {
     abbreviatedCost() {
@@ -88,20 +92,24 @@ export default {
     formattedCost() {
       return formatNum(this.fullCost);
     },
-    fullCostAndLevelsToUp() {
-      return calcUpgradeCostAndLevelsToUp(
+    upgradeInfo() {
+      return calcUpgradeInfo(
         this.purchaseCount,
         this.level,
         this.cost,
         this.idx,
         this.gold,
+        this.growthRate,
       );
     },
     fullCost() {
-      return this.fullCostAndLevelsToUp.fullCost;
+      return this.upgradeInfo.fullCost;
+    },
+    fullValue() {
+      return this.upgradeInfo.fullValue;
     },
     levelsToUp() {
-      return this.fullCostAndLevelsToUp.levelsToUp;
+      return this.upgradeInfo.levelsToUp;
     },
     isAvailable() {
       return this.gold >= this.fullCost;
@@ -116,10 +124,11 @@ export default {
   methods: {
     onClickHandler() {
       if (this.gold >= this.fullCost) {
-        this.$emit('writeOffGold', this.fullCost);
-        this.$emit('levelUpSelf', {
+        this.$emit('upgradeCard', {
           id: this.idx,
+          gold: this.fullCost,
           levels: this.levelsToUp,
+          value: this.fullValue,
         });
       }
     },

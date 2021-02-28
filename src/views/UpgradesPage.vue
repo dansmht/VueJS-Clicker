@@ -12,8 +12,8 @@
           :cost="upgrade.cost"
           :gold="gold"
           :purchase-count="purchaseCount"
-          @writeOffGold="writeOffGold"
-          @levelUpSelf="levelUpSelf"
+          :growth-rate="upgrade.growthRate"
+          @upgradeCard="upgradeCard"
         />
       </ul>
     </div>
@@ -50,11 +50,8 @@ export default {
     onChangePurchaseCount(val) {
       this.purchaseCount = val;
     },
-    writeOffGold(gold) {
-      this.$emit('writeOffGold', gold);
-    },
-    levelUpSelf(payload) {
-      this.$emit('levelUpSelf', payload);
+    upgradeCard(payload) {
+      this.$emit('upgradeCard', payload);
     },
   },
 };
