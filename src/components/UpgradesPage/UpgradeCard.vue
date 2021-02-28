@@ -11,7 +11,10 @@
         {{ name }}
       </h4>
       <p class="text">
-        {{ `${description} ${fullValue}` }}
+        {{ description }}
+        <span v-tooltip="formattedValue">
+          {{ abbreviatedValue }}
+        </span>
       </p>
       <div class="parameters">
         <p class="param level">
@@ -86,12 +89,6 @@ export default {
     },
   },
   computed: {
-    abbreviatedCost() {
-      return abbreviateNumber(this.fullCost);
-    },
-    formattedCost() {
-      return formatNum(this.fullCost);
-    },
     upgradeInfo() {
       return calcUpgradeInfo(
         this.purchaseCount,
@@ -101,6 +98,18 @@ export default {
         this.gold,
         this.growthRate,
       );
+    },
+    abbreviatedCost() {
+      return abbreviateNumber(this.fullCost);
+    },
+    abbreviatedValue() {
+      return abbreviateNumber(this.fullValue);
+    },
+    formattedCost() {
+      return formatNum(this.fullCost);
+    },
+    formattedValue() {
+      return formatNum(this.fullValue);
     },
     fullCost() {
       return this.upgradeInfo.fullCost;
@@ -171,6 +180,10 @@ export default {
       color: var(--font-sub-color);
       font-size: var(--smallest-font);
       line-height: 14px;
+
+      span {
+        color: var(--font-sub-color);
+      }
     }
 
     .parameters {
