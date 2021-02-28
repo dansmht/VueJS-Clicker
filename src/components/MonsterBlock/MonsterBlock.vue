@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     isBoss() {
-      return !(this.currentMonsterIndex % 10);
+      return !(this.currentMonsterIndex % 50);
     },
     monsters: {
       get() {

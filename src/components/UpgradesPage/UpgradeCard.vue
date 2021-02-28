@@ -90,14 +90,7 @@ export default {
   },
   computed: {
     upgradeInfo() {
-      return calcUpgradeInfo(
-        this.purchaseCount,
-        this.level,
-        this.cost,
-        this.idx,
-        this.gold,
-        this.growthRate,
-      );
+      return calcUpgradeInfo(this.purchaseCount, this.level, this.cost, this.gold, this.growthRate);
     },
     abbreviatedCost() {
       return abbreviateNumber(this.fullCost);
