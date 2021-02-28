@@ -46,6 +46,13 @@ export default {
 
   progress {
     display: none;
+
+    &[value="100"] {
+      & + .progress-bg .progress-bar {
+        transition-property: width;
+        transition-duration: 0s;
+      }
+    }
   }
 
   .progress-bg {
@@ -60,7 +67,7 @@ export default {
       top: 0;
       left: 0;
       width: 0;
-      transition: width .5s linear;
+      transition: width .2s linear;
     }
   }
 }
