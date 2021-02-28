@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import { abbreviateNumber } from '@/utils/abbreviateNumber';
-import { formatNum } from '@/utils/formatNum';
+import { abbreviateNumber } from '@/shared/functions/abbreviateNumber';
+import { formatNum } from '@/shared/functions/formatNum';
 
 export default {
   name: 'StateBar',

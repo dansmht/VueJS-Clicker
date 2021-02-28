@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     onClickHandler() {
-      this.$emit('hitMonster');
+      this.$emit('hitMonster', true);
     },
   },
 };

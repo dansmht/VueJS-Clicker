@@ -44,9 +44,9 @@
 <script>
 import IconPlus from '@/components/common/Icons/IconPlus.vue';
 import IconUpArrow from '@/components/common/Icons/IconUpArrow.vue';
-import { abbreviateNumber } from '@/utils/abbreviateNumber';
-import { formatNum } from '@/utils/formatNum';
-import { calcUpgradeInfo } from '@/utils/formulas';
+import { abbreviateNumber } from '@/shared/functions/abbreviateNumber';
+import { formatNum } from '@/shared/functions/formatNum';
+import { calcUpgradeInfo } from '@/shared/functions/formulas';
 
 export default {
   name: 'UpgradeCard',

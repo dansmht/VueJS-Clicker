@@ -3,19 +3,19 @@
     id="app"
     @contextmenu.prevent
   >
-    <state-bar :gold="gold" />
+    <state-bar :gold="current.gold" />
     <the-nav />
     <main>
       <div class="container main-wrapper">
         <router-view
           :upgrades="upgrades"
-          :gold="gold"
+          :gold="current.gold"
           @upgradeCard="upgradeCard"
         />
         <monster-block
-          :current-monster-index="currentMonsterIndex"
-          :damage="damage"
-          :damage-per-sec="damagePerSec"
+          :monster-index="current.monsterIndex"
+          :damage="current.damage"
+          :damage-per-sec="current.damagePerSec"
           @enrollGold="enrollGold"
           @hitMonster="hitMonster"
           @killMonster="killMonster"
@@ -29,187 +29,15 @@
 import StateBar from '@/components/StateBar.vue';
 import TheNav from '@/components/TheNav.vue';
 import MonsterBlock from '@/components/MonsterBlock/MonsterBlock.vue';
-import { calcGoldForKilling } from '@/utils/formulas';
-
-const upgrades = [{
-  id: 1,
-  name: 'Desecrated Flame',
-  description: 'Increase damage per click by',
-  level: 0,
-  cost: 10,
-  value: 0,
-  growthRate: 1,
-}, {
-  id: 2,
-  name: 'Gold Bag',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 50,
-  value: 0,
-  growthRate: 5,
-}, {
-  id: 3,
-  name: 'Helmet Of The Wind',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 100,
-  value: 0,
-  growthRate: 15,
-}, {
-  id: 4,
-  name: 'Cursed Sword',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 500,
-  value: 0,
-  growthRate: 28,
-}, {
-  id: 5,
-  name: 'Afflatus',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 1000,
-  value: 0,
-  growthRate: 53,
-}, {
-  id: 6,
-  name: 'Ebony Breastplate',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 5000,
-  value: 0,
-  growthRate: 103,
-}, {
-  id: 7,
-  name: 'Fallen Hand',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 10000,
-  value: 0,
-  growthRate: 228,
-}, {
-  id: 8,
-  name: 'Old Boots Of The Deceased',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 50000,
-  value: 0,
-  growthRate: 478,
-}, {
-  id: 9,
-  name: 'Ring Of Will',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 100000,
-  value: 0,
-  growthRate: 978,
-}, {
-  id: 10,
-  name: 'Beckoning Amulet Of Pain',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 500000,
-  value: 0,
-  growthRate: 1603,
-}, {
-  id: 11,
-  name: 'Screaming Lantern',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 1000000,
-  value: 0,
-  growthRate: 2478,
-}, {
-  id: 12,
-  name: 'Key Holding',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 5000000,
-  value: 0,
-  growthRate: 3728,
-}, {
-  id: 13,
-  name: 'Lost Empire Banner',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 10000000,
-  value: 0,
-  growthRate: 5728,
-}, {
-  id: 14,
-  name: 'Enchantment Prism',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 50000000,
-  value: 0,
-  growthRate: 10728,
-}, {
-  id: 15,
-  name: 'Amulet Of Time',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 100000000,
-  value: 0,
-  growthRate: 23228,
-}, {
-  id: 16,
-  name: 'Secret Restraining Seal',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 500000000,
-  value: 0,
-  growthRate: 48228,
-}, {
-  id: 17,
-  name: 'Ebony Rune Of Blood',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 1000000000,
-  value: 0,
-  growthRate: 98228,
-}, {
-  id: 18,
-  name: 'Maelstrom Shield',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 5000000000,
-  value: 0,
-  growthRate: 348228,
-}, {
-  id: 19,
-  name: 'Spy Of The Order Of The Ebony',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 10000000000,
-  value: 0,
-  growthRate: 848228,
-}, {
-  id: 20,
-  name: 'Sacrifice Knife',
-  description: 'Increase damage per second by',
-  level: 0,
-  cost: 50000000000,
-  value: 0,
-  growthRate: 1848228,
-}];
+import { calcGoldForKilling } from '@/shared/functions/formulas';
+import { current, total, upgrades } from '@/shared/initialState/initialAppState';
 
 export default {
   components: { MonsterBlock, TheNav, StateBar },
   data() {
     return {
-      total: {
-        clicks: 0,
-        gold: 0,
-        damage: 0,
-        kills: {
-          monsters: 0,
-          bosses: 0,
-        },
-      },
-      gold: 0,
-      damage: 1,
-      damagePerSec: 0,
-      currentMonsterIndex: 1,
+      total,
+      current,
       upgrades,
     };
   },
@@ -240,13 +68,13 @@ export default {
   },
   methods: {
     nextMonster() {
-      this.currentMonsterIndex++;
+      this.current.monsterIndex++;
     },
     enrollGold(gold) {
-      this.gold += gold;
+      this.current.gold += gold;
     },
     writeOffGold(gold) {
-      this.gold -= gold;
+      this.current.gold -= gold;
     },
     upgradeCard({
       id,
@@ -258,9 +86,9 @@ export default {
       const upgrade = this.upgrades.find((u) => u.id === id);
       upgrade.level += levels;
       if (id === 1) {
-        this.damage += value;
+        this.current.damage += value;
       } else {
-        this.damagePerSec += value;
+        this.current.damagePerSec += value;
       }
     },
     hitMonster(damage, isByClick) {
@@ -270,13 +98,12 @@ export default {
       this.total.damage += damage;
     },
     killMonster(isBoss) {
-      this.enrollGold(calcGoldForKilling(this.currentMonsterIndex, isBoss));
+      this.enrollGold(calcGoldForKilling(this.current.monsterIndex, isBoss));
       this.nextMonster();
       if (isBoss) {
         this.total.kills.bosses++;
-      } else {
-        this.total.kills.monsters++;
       }
+      this.total.kills.monsters++;
     },
   },
 };

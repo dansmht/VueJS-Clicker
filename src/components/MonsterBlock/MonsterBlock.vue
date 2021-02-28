@@ -10,7 +10,7 @@
       :max-health-points="maxHealthPoints"
     />
     <skills-area />
-    {{ currentMonsterIndex }}
+    {{ monsterIndex }}
   </div>
 </template>
 
@@ -18,14 +18,14 @@
 import BaseMonster from '@/components/MonsterBlock/Monsters/BaseMonster.vue';
 import MonsterParams from '@/components/MonsterBlock/MonsterParams.vue';
 import SkillsArea from '@/components/MonsterBlock/SkillsArea.vue';
-import { calcMonsterHP } from '@/utils/formulas';
-import { getRandomAnotherIndex } from '@/utils/getRandom';
+import { calcMonsterHP } from '@/shared/functions/formulas';
+import { getRandomAnotherIndex } from '@/shared/functions/getRandom';
 
 export default {
   name: 'MonsterBlock',
   components: { SkillsArea, MonsterParams, BaseMonster },
   props: {
-    currentMonsterIndex: {
+    monsterIndex: {
       type: Number,
       required: true,
     },
@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     isBoss() {
-      return !(this.currentMonsterIndex % 50);
+      return !(this.monsterIndex % 50);
     },
     monsters: {
       get() {
@@ -80,11 +80,13 @@ export default {
   },
   watch: {
     currentHealthPoints(val) {
+      console.log('currentHealthPoints', val);
       if (val <= 0) {
+        console.log('killMonster');
         this.$emit('killMonster', this.isBoss);
       }
     },
-    currentMonsterIndex() {
+    monsterIndex() {
       this.generateMonster();
     },
   },
@@ -92,8 +94,7 @@ export default {
     this.generateMonster();
 
     setInterval(() => {
-      this.currentHealthPoints -= this.damagePerSec;
-      this.$emit('hitMonster', this.damagePerSec, false);
+      this.hitMonster(false);
     }, 1000);
   },
   methods: {
@@ -101,12 +102,20 @@ export default {
       this.rndMonster();
       this.calcMonsterStats();
     },
-    hitMonster() {
-      this.currentHealthPoints -= this.damage;
-      this.$emit('hitMonster', this.damage, true);
+    hitMonster(isByClick) {
+      const damage = isByClick
+        ? this.damage
+        : this.damagePerSec;
+
+      const realDamage = this.currentHealthPoints > damage
+        ? damage
+        : this.currentHealthPoints;
+
+      this.currentHealthPoints -= realDamage;
+      this.$emit('hitMonster', realDamage, isByClick);
     },
     calcMonsterStats() {
-      const hp = calcMonsterHP(this.currentMonsterIndex, this.isBoss);
+      const hp = calcMonsterHP(this.monsterIndex, this.isBoss);
       this.maxHealthPoints = hp;
       this.currentHealthPoints = hp;
     },
