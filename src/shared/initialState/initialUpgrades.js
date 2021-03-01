@@ -8,7 +8,7 @@ export const initialUpgrades = [{
   growthRate: 1,
 }, {
   id: 2,
-  name: 'Gold Bag',
+  name: 'Bag Of Gold',
   description: 'Increase damage per second by',
   level: 0,
   cost: 50,
@@ -99,9 +99,9 @@ export const initialUpgrades = [{
   name: 'Lost Empire Banner',
   description: 'Increase damage per second by',
   level: 0,
-  cost: 6500000000,
+  cost: 1500000,
   value: 0,
-  growthRate: 1, // ?
+  growthRate: 33933,
 }, {
   id: 14,
   name: 'Enchantment Prism',
@@ -125,7 +125,7 @@ export const initialUpgrades = [{
   level: 0,
   cost: 25000000,
   value: 0,
-  growthRate: 1, // ?
+  growthRate: 228228,
 }, {
   id: 17,
   name: 'Ebony Rune Of Blood',
