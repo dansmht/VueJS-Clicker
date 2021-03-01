@@ -1,4 +1,4 @@
-// import { getRandomInRange } from '@/utils/getRandom';
+import { getRandomInRange } from '@/shared/functions/getRandom';
 
 const calcUpgradeCostByOneLevel = (level, baseUpgradeCost) => {
   const multiplier = 1.07 ** level;
@@ -49,8 +49,7 @@ const calcStage = (monsterIndex) => Math.floor((monsterIndex - 1) / 10);
 
 export const calcMonsterHP = (monsterIndex, isBoss) => {
   const multiplier = isBoss ? 10 : 1;
-  // const multiplier2 = 1 + (getRandomInRange(-25, 25) / 100);
-  const multiplier2 = 1;
+  const multiplier2 = 1 + (getRandomInRange(-25, 25) / 100);
   const stage = calcStage(monsterIndex);
   const monsterHP = (10 * (stage + (1.55 ** stage)));
   return Math.ceil(monsterHP * multiplier * multiplier2);
