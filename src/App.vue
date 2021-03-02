@@ -10,6 +10,8 @@
         <router-view
           :upgrades="upgrades"
           :gold="current.gold"
+          :current="current"
+          :total="total"
           @upgradeCard="upgradeCard"
           @unlockUpgrade="unlockUpgrade"
         />
@@ -86,6 +88,7 @@ export default {
       this.writeOffGold(gold);
       const upgrade = this.upgrades.find((u) => u.id === id);
       upgrade.level += levels;
+      this.total.purchasedLevels += levels;
       if (id === 1) {
         this.current.damage += value;
       } else {
