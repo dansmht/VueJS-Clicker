@@ -6,6 +6,7 @@ export const initialUpgrades = [{
   cost: 5,
   value: 0,
   growthRate: 1,
+  show: true,
 }, {
   id: 2,
   name: 'Bag Of Gold',
@@ -14,6 +15,7 @@ export const initialUpgrades = [{
   cost: 50,
   value: 0,
   growthRate: 5,
+  show: false,
 }, {
   id: 3,
   name: 'Helmet Of The Wind',
@@ -22,6 +24,7 @@ export const initialUpgrades = [{
   cost: 250,
   value: 0,
   growthRate: 22,
+  show: false,
 }, {
   id: 4,
   name: 'Cursed Sword',
@@ -30,6 +33,7 @@ export const initialUpgrades = [{
   cost: 1000,
   value: 0,
   growthRate: 74,
+  show: false,
 }, {
   id: 5,
   name: 'Afflatus',
@@ -38,6 +42,7 @@ export const initialUpgrades = [{
   cost: 2000,
   value: 0,
   growthRate: 126,
+  show: false,
 }, {
   id: 6,
   name: 'Ebony Breastplate',
@@ -46,6 +51,7 @@ export const initialUpgrades = [{
   cost: 4000,
   value: 0,
   growthRate: 245,
+  show: false,
 }, {
   id: 7,
   name: 'Fallen Hand',
@@ -54,6 +60,7 @@ export const initialUpgrades = [{
   cost: 10000,
   value: 0,
   growthRate: 508,
+  show: false,
 }, {
   id: 8,
   name: 'Old Boots Of The Deceased',
@@ -62,6 +69,7 @@ export const initialUpgrades = [{
   cost: 20000,
   value: 0,
   growthRate: 976,
+  show: false,
 }, {
   id: 9,
   name: 'Ring Of Will',
@@ -70,6 +78,7 @@ export const initialUpgrades = [{
   cost: 40000,
   value: 0,
   growthRate: 1580,
+  show: false,
 }, {
   id: 10,
   name: 'Beckoning Amulet Of Pain',
@@ -78,6 +87,7 @@ export const initialUpgrades = [{
   cost: 100000,
   value: 0,
   growthRate: 3725,
+  show: false,
 }, {
   id: 11,
   name: 'Screaming Lantern',
@@ -86,6 +96,7 @@ export const initialUpgrades = [{
   cost: 200000,
   value: 0,
   growthRate: 5851,
+  show: false,
 }, {
   id: 12,
   name: 'Key Holding',
@@ -94,6 +105,7 @@ export const initialUpgrades = [{
   cost: 400000,
   value: 0,
   growthRate: 10859,
+  show: false,
 }, {
   id: 13,
   name: 'Lost Empire Banner',
@@ -102,6 +114,7 @@ export const initialUpgrades = [{
   cost: 1500000,
   value: 0,
   growthRate: 33933,
+  show: false,
 }, {
   id: 14,
   name: 'Enchantment Prism',
@@ -110,6 +123,7 @@ export const initialUpgrades = [{
   cost: 2500000,
   value: 0,
   growthRate: 47143,
+  show: false,
 }, {
   id: 15,
   name: 'Amulet Of Time',
@@ -118,6 +132,7 @@ export const initialUpgrades = [{
   cost: 15000000,
   value: 0,
   growthRate: 186900,
+  show: false,
 }, {
   id: 16,
   name: 'Secret Restraining Seal',
@@ -126,6 +141,7 @@ export const initialUpgrades = [{
   cost: 25000000,
   value: 0,
   growthRate: 228228,
+  show: false,
 }, {
   id: 17,
   name: 'Ebony Rune Of Blood',
@@ -134,6 +150,7 @@ export const initialUpgrades = [{
   cost: 100000000,
   value: 0,
   growthRate: 782000,
+  show: false,
 }, {
   id: 18,
   name: 'Maelstrom Shield',
@@ -142,6 +159,7 @@ export const initialUpgrades = [{
   cost: 800000000,
   value: 0,
   growthRate: 3721000,
+  show: false,
 }, {
   id: 19,
   name: 'Spy Of The Order Of The Ebony',
@@ -150,6 +168,7 @@ export const initialUpgrades = [{
   cost: 6500000000,
   value: 0,
   growthRate: 17010000,
+  show: false,
 }, {
   id: 20,
   name: 'Sacrifice Knife',
@@ -158,4 +177,5 @@ export const initialUpgrades = [{
   cost: 50000000000,
   value: 0,
   growthRate: 69480000,
+  show: false,
 }];

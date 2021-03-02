@@ -11,6 +11,7 @@
           :upgrades="upgrades"
           :gold="current.gold"
           @upgradeCard="upgradeCard"
+          @unlockUpgrade="unlockUpgrade"
         />
         <monster-block
           :monster-index="current.monsterIndex"
@@ -104,6 +105,10 @@ export default {
         this.total.kills.bosses++;
       }
       this.total.kills.monsters++;
+    },
+    unlockUpgrade(id) {
+      const upgrade = this.upgrades.find((u) => u.id === id);
+      upgrade.show = true;
     },
   },
 };
