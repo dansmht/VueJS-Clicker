@@ -1,0 +1,30 @@
+.purchase-menu {
+  width: calc(var(--options-block-width) - 20px);
+  height: 40px;
+  background: var(--darkest-color);
+  display: flex;
+
+  .title {
+    @include flex-center;
+    width: 107px;
+  }
+
+  .list {
+    display: flex;
+
+    .list-item {
+      @include flex-center;
+      width: calc((var(--options-block-width) - 20px - 107px) / 4);
+      color: var(--font-sub-color);
+
+      &:hover {
+        color: var(--font-main-color);
+      }
+
+      &.active {
+        background: var(--darker-color);
+        color: var(--font-main-color);
+      }
+    }
+  }
+}

@@ -138,10 +138,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.monster-block {
-  width: var(--monster-block-width);
-  margin: 30px auto 0;
-}
-</style>

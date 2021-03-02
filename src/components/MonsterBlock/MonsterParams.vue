@@ -56,28 +56,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.monster-params {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  .name {
-    font-size: var(--large-font);
-    font-weight: normal;
-    margin: 10px 0;
-  }
-
-  .health-wrapper {
-    width: 100%;
-
-    .health-points {
-      font-size: var(--small-font);
-      margin-bottom: 10px;
-      text-align: center;
-    }
-  }
-}
-</style>

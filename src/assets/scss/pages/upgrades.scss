@@ -1,0 +1,24 @@
+.update-page {
+  @include working-area;
+
+  .scroll-wrapper {
+    height: calc(100% - 40px);
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--darker-color);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #727272;
+    }
+  }
+
+  .list {
+    margin-right: 16px;
+  }
+}

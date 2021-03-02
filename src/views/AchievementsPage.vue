@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="achievements-page">
     <h1>AchievementsPage</h1>
   </div>
 </template>
@@ -9,7 +9,3 @@ export default {
   name: 'AchievementsPage',
 };
 </script>
-
-<style scoped>
-
-</style>

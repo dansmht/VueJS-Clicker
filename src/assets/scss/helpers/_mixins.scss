@@ -1,0 +1,11 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin working-area {
+  width: var(--options-block-width);
+  height: calc(100vh - 120px);
+  margin: 20px 10px 20px;
+}

@@ -35,24 +35,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.state-bar {
-  height: 40px;
-  background: var(--darkest-color);
-
-  .container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-
-    .gold {
-      width: var(--options-block-width);
-    }
-
-    .diamonds {
-      width: var(--monster-block-width);
-    }
-  }
-}
-</style>

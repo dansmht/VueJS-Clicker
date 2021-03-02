@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="stats-page">
     <h1>StatsPage</h1>
   </div>
 </template>
@@ -9,7 +9,3 @@ export default {
   name: 'StatsPage',
 };
 </script>
-
-<style lang="scss" scoped>
-
-</style>

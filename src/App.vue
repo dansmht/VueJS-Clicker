@@ -32,6 +32,8 @@ import MonsterBlock from '@/components/MonsterBlock/MonsterBlock.vue';
 import { calcGoldForKilling } from '@/shared/functions/formulas';
 import { current, total, upgrades } from '@/shared/initialState/initialAppState';
 
+import '@/assets/scss/style.scss';
+
 export default {
   components: { MonsterBlock, TheNav, StateBar },
   data() {
@@ -54,6 +56,7 @@ export default {
         localStorage.setItem('session', localStorage.getItem('multitab'));
         localStorage.removeItem('multitab');
         alert('Multitab');
+        window.close();
       }
     };
     window.addEventListener('storage', onStorage);
@@ -108,171 +111,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-
-:root {
-  // sizes
-  --working-width: 1040px;
-  --options-block-width: 500px;
-  --monster-block-width: 360px;
-  --upgrade-card-height: 90px;
-  --smallest-font: 12px;
-  --small-font: 14px;
-  --default-font: 16px;
-  --large-font: 18px;
-
-  // background colors
-  --primary-color: #303030;
-  --darker-color: #202020;
-  --darkest-color: #101010;
-
-  // font colors
-  --font-main-color: #fafafa;
-  --font-sub-color: #b0b0b0;
-}
-
-* {
-  font-family: Ubuntu, Avenir, Helvetica, Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  color: var(--font-main-color);
-  cursor: default;
-  user-select: none;
-}
-
-img {
-  pointer-events: none;
-}
-
-ul {
-  list-style: none;
-}
-
-html,
-body,
-#app {
-  height: 100%;
-}
-
-#app {
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex-grow: 1;
-}
-
-body {
-  background: var(--primary-color);
-  font-size: var(--default-font);
-}
-
-.container {
-  max-width: var(--working-width);
-  margin: 0 auto;
-  height: 100%;
-}
-
-.main-wrapper {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.tooltip {
-  display: block !important;
-  z-index: 10000;
-
-  .tooltip-inner {
-    background: var(--font-main-color);
-    color: var(--darkest-color);
-    padding: 5px 10px 4px;
-  }
-
-  .tooltip-arrow {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    position: absolute;
-    margin: 5px;
-    border-color: var(--font-main-color);
-    z-index: 1;
-  }
-
-  &[x-placement^="top"] {
-    margin-bottom: 5px;
-
-    .tooltip-arrow {
-      border-width: 5px 5px 0 5px;
-      border-left-color: transparent !important;
-      border-right-color: transparent !important;
-      border-bottom-color: transparent !important;
-      bottom: -5px;
-      left: calc(50% - 5px);
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
-
-  &[x-placement^="bottom"] {
-    margin-top: 5px;
-
-    .tooltip-arrow {
-      border-width: 0 5px 5px 5px;
-      border-left-color: transparent !important;
-      border-right-color: transparent !important;
-      border-top-color: transparent !important;
-      top: -5px;
-      left: calc(50% - 5px);
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
-
-  &[x-placement^="right"] {
-    margin-left: 5px;
-
-    .tooltip-arrow {
-      border-width: 5px 5px 5px 0;
-      border-left-color: transparent !important;
-      border-top-color: transparent !important;
-      border-bottom-color: transparent !important;
-      left: -5px;
-      top: calc(50% - 5px);
-      margin-left: 0;
-      margin-right: 0;
-    }
-  }
-
-  &[x-placement^="left"] {
-    margin-right: 5px;
-
-    .tooltip-arrow {
-      border-width: 5px 0 5px 5px;
-      border-top-color: transparent !important;
-      border-right-color: transparent !important;
-      border-bottom-color: transparent !important;
-      right: -5px;
-      top: calc(50% - 5px);
-      margin-left: 0;
-      margin-right: 0;
-    }
-  }
-
-  &[aria-hidden='true'] {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity .15s, visibility .15s;
-  }
-
-  &[aria-hidden='false'] {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity .15s;
-  }
-}
-</style>

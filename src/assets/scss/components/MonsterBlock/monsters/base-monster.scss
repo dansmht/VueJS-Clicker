@@ -1,0 +1,4 @@
+.monster {
+  @include flex-center;
+  height: var(--monster-block-width);
+}
