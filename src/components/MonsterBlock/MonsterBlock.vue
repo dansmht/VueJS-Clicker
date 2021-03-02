@@ -69,6 +69,9 @@ export default {
         }, {
           name: 'Wild Bone Dog',
           componentName: 'wild-bone-dog-monster',
+        }, {
+          name: 'Swords Keeper',
+          componentName: 'swords-keeper-monster',
         }];
       },
     },

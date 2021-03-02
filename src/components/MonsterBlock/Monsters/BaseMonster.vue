@@ -16,10 +16,12 @@ import SpiderMonster from '@/components/MonsterBlock/Monsters/SVG/SpiderMonster.
 import EbonyStatueMonster from '@/components/MonsterBlock/Monsters/SVG/EbonyStatueMonster.vue';
 import OvergrownBeetleMonster from '@/components/MonsterBlock/Monsters/SVG/OvergrownBeetleMonster.vue';
 import WildBoneDogMonster from '@/components/MonsterBlock/Monsters/SVG/WildBoneDogMonster.vue';
+import SwordsKeeperMonster from '@/components/MonsterBlock/Monsters/SVG/SwordsKeeperMonster.vue';
 
 export default {
   name: 'BaseMonster',
   components: {
+    SwordsKeeperMonster,
     RatKingMonster,
     VoidSpecterMonster,
     RatMonster,
