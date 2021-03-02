@@ -14,6 +14,8 @@ import VoidSpecterMonster from '@/components/MonsterBlock/Monsters/SVG/VoidSpect
 import RatMonster from '@/components/MonsterBlock/Monsters/SVG/RatMonster.vue';
 import SpiderMonster from '@/components/MonsterBlock/Monsters/SVG/SpiderMonster.vue';
 import EbonyStatueMonster from '@/components/MonsterBlock/Monsters/SVG/EbonyStatueMonster.vue';
+import OvergrownBeetleMonster from '@/components/MonsterBlock/Monsters/SVG/OvergrownBeetleMonster.vue';
+import WildBoneDogMonster from '@/components/MonsterBlock/Monsters/SVG/WildBoneDogMonster.vue';
 
 export default {
   name: 'BaseMonster',
@@ -23,6 +25,8 @@ export default {
     RatMonster,
     SpiderMonster,
     EbonyStatueMonster,
+    OvergrownBeetleMonster,
+    WildBoneDogMonster,
   },
   props: {
     componentName: {

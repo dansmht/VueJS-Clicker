@@ -63,6 +63,12 @@ export default {
         }, {
           name: 'Ebony Statue',
           componentName: 'ebony-statue-monster',
+        }, {
+          name: 'Overgrown Beetle',
+          componentName: 'overgrown-beetle-monster',
+        }, {
+          name: 'Wild Bone Dog',
+          componentName: 'wild-bone-dog-monster',
         }];
       },
     },
