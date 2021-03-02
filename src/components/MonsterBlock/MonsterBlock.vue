@@ -80,9 +80,7 @@ export default {
   },
   watch: {
     currentHealthPoints(val) {
-      console.log('currentHealthPoints', val);
       if (val <= 0) {
-        console.log('killMonster');
         this.$emit('killMonster', this.isBoss);
       }
     },
