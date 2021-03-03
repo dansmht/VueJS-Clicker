@@ -3,7 +3,7 @@
     <div class="scroll-wrapper">
       <ul class="list">
         <upgrade-card
-          v-for="upgrade in upgradesToShow"
+          v-for="upgrade in upgrades"
           :key="upgrade.id"
           :idx="upgrade.id"
           :name="upgrade.name"
@@ -45,22 +45,6 @@ export default {
     return {
       purchaseCount: 1,
     };
-  },
-  computed: {
-    upgradesToShow() {
-      return this.upgrades.filter((upgrade) => upgrade.show);
-    },
-    lastUpgradeToShow() {
-      return this.upgradesToShow[this.upgradesToShow.length - 1];
-    },
-  },
-  watch: {
-    gold(val) {
-      if (this.upgrades.length > this.upgradesToShow.length && val >= this.lastUpgradeToShow.cost) {
-        const nextUpgradeToShowId = this.upgrades[this.upgradesToShow.length].id;
-        this.$emit('unlockUpgrade', nextUpgradeToShowId);
-      }
-    },
   },
   methods: {
     onChangePurchaseCount(val) {

@@ -8,12 +8,11 @@
     <main>
       <div class="container main-wrapper">
         <router-view
-          :upgrades="upgrades"
+          :upgrades="upgradesToShow"
           :gold="current.gold"
           :current="current"
           :total="total"
           @upgradeCard="upgradeCard"
-          @unlockUpgrade="unlockUpgrade"
         />
         <monster-block
           :monster-index="current.monsterIndex"
@@ -45,6 +44,22 @@ export default {
       current,
       upgrades,
     };
+  },
+  computed: {
+    upgradesToShow() {
+      return this.upgrades.filter((upgrade) => upgrade.show);
+    },
+    lastUpgradeToShow() {
+      return this.upgradesToShow[this.upgradesToShow.length - 1];
+    },
+  },
+  watch: {
+    'current.gold': function (val) {
+      if (this.upgrades.length > this.upgradesToShow.length && val >= this.lastUpgradeToShow.cost) {
+        const nextUpgradeToShowId = this.upgrades[this.upgradesToShow.length].id;
+        this.unlockUpgrade(nextUpgradeToShowId);
+      }
+    },
   },
   beforeCreate() {
     // test for multitabs
@@ -78,6 +93,7 @@ export default {
     },
     enrollGold(gold) {
       this.current.gold += gold;
+      this.total.gold += gold;
     },
     writeOffGold(gold) {
       this.current.gold -= gold;

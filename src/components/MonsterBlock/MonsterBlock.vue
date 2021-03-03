@@ -93,13 +93,12 @@ export default {
         this.$emit('killMonster', this.isBoss);
       }
     },
-    monsterIndex() {
-      this.generateMonster();
+    monsterIndex: {
+      handler: 'generateMonster',
+      immediate: true,
     },
   },
   created() {
-    this.generateMonster();
-
     setInterval(() => {
       this.hitMonster(false);
     }, 1000);
