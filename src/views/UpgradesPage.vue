@@ -72,32 +72,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.update-page {
-  width: var(--options-block-width);
-  height: calc(100vh - 120px);
-  margin: 20px 10px 20px;
-
-  .scroll-wrapper {
-    height: calc(100% - 40px);
-    overflow-y: scroll;
-
-    &::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: var(--darker-color);
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #727272;
-    }
-  }
-
-  .list {
-    margin-right: 16px;
-  }
-}
-</style>

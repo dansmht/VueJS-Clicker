@@ -43,12 +43,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.monster {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: var(--monster-block-width);
-}
-</style>

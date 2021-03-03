@@ -42,37 +42,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.nav {
-  height: 40px;
-  background: var(--darker-color);
-
-  .nav-list {
-    display: flex;
-    align-items: center;
-
-    .nav-list-item {
-
-      .nav-list-link {
-        display: inline-block;
-        width: calc(500px / 3);
-        text-align: center;
-        color: var(--font-sub-color);
-        line-height: 40px;
-        text-decoration: none;
-
-        &:hover {
-          color: var(--font-main-color);
-        }
-
-        &.active {
-          color: var(--font-main-color);
-          border-radius: 10px 10px 0 0;
-          background: var(--primary-color);
-        }
-      }
-    }
-  }
-}
-</style>

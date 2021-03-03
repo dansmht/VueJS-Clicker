@@ -1,0 +1,11 @@
+@import "monster-block";
+@import "monster-health-bar";
+@import "monster-params";
+@import "skills-area";
+
+// Base Monster
+@import "monsters/base-monster";
+
+// Bosses
+@import "monsters/rat-king-monster";
+@import "monsters/void-specter";

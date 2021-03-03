@@ -1,0 +1,114 @@
+.rat-king-monster {
+  .mace {
+    transform-origin: 80% center;
+    animation: stir-1 2s linear infinite;
+
+    &-head {
+      transform-origin: 20% 80%;
+      animation: dash 6s linear infinite;
+    }
+  }
+  .second-tail {
+    transform-origin: 80% center;
+    animation: stir-2 3s linear infinite;
+  }
+  .eye {
+    animation: blink 5s linear infinite;
+
+    &-1 {
+      transform-origin: center 41%;
+    }
+    &-2 {
+      transform-origin: center 39%;
+    }
+    &-3 {
+      transform-origin: center 44%;
+    }
+  }
+  @keyframes dash {
+    0% {
+      transform: rotate(0);
+    }
+    4% {
+      transform: rotate(0);
+    }
+    8% {
+      transform: rotate(5deg);
+    }
+    12% {
+      transform: rotate(12deg) scale(1.05);
+    }
+    18% {
+      transform: rotate(15deg);
+    }
+    24% {
+      transform: rotate(0) scale(1);
+    }
+    30% {
+      transform: rotate(-8deg);
+    }
+    50% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(0);
+    }
+  }
+  @keyframes stir-1 {
+    0% {
+      transform: matrix(1, 0, 0, 1, 0, 0);
+    }
+    50% {
+      transform: matrix(1, 0.03, 0.05, 0.95, -2, 2);
+    }
+    100% {
+      transform: matrix(1, 0, 0, 1, 0, 0);
+    }
+  }
+  @keyframes stir-2 {
+    0% {
+      transform: matrix(1, 0, 0, 1, 0, 0);
+    }
+    50% {
+      transform: matrix(0.9, 0.03, 0.05, 0.95, -6, 0);
+    }
+    100% {
+      transform: matrix(1, 0, 0, 1, 0, 0);
+    }
+  }
+  @keyframes blink {
+    0% {
+      transform: scaleY(1);
+    }
+    9% {
+      transform: scaleY(1);
+    }
+    10% {
+      transform: scaleY(0);
+    }
+    12% {
+      transform: scaleY(1);
+    }
+    38% {
+      transform: scaleY(1);
+    }
+    40% {
+      transform: scaleY(0);
+    }
+    43% {
+      transform: scaleY(1);
+    }
+    45% {
+      transform: scaleY(1);
+    }
+    47% {
+      transform: scaleY(0);
+    }
+    50% {
+      transform: scaleY(1);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+}
