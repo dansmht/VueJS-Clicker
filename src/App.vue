@@ -7,12 +7,17 @@
     <the-nav />
     <main>
       <div class="container main-wrapper">
-        <router-view
+        <upgrades-page
+          v-show="activeBlock === 'Upgrades'"
           :upgrades="upgradesToShow"
           :gold="current.gold"
+          @upgradeCard="upgradeCard"
+        />
+        <achievements-page v-show="activeBlock === 'Achievements'" />
+        <stats-page
+          v-show="activeBlock === 'Stats'"
           :current="current"
           :total="total"
-          @upgradeCard="upgradeCard"
         />
         <monster-block
           :monster-index="current.monsterIndex"
@@ -28,6 +33,9 @@
 </template>
 
 <script>
+import UpgradesPage from '@/views/UpgradesPage.vue';
+import AchievementsPage from '@/views/AchievementsPage.vue';
+import StatsPage from '@/views/StatsPage.vue';
 import StateBar from '@/components/StateBar.vue';
 import TheNav from '@/components/TheNav.vue';
 import MonsterBlock from '@/components/MonsterBlock/MonsterBlock.vue';
@@ -37,12 +45,20 @@ import { current, total, upgrades } from '@/shared/initialState/initialAppState'
 import '@/assets/scss/style.scss';
 
 export default {
-  components: { MonsterBlock, TheNav, StateBar },
+  components: {
+    StatsPage,
+    AchievementsPage,
+    UpgradesPage,
+    MonsterBlock,
+    TheNav,
+    StateBar,
+  },
   data() {
     return {
       total,
       current,
       upgrades,
+      activeBlock: 'Upgrades',
     };
   },
   computed: {
