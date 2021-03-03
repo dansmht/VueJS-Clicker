@@ -3,7 +3,10 @@
     <span class="stats-title">
       {{ title }}
     </span>
-    <span class="stats-value">
+    <span
+      v-tooltip="`${value}`"
+      class="stats-value"
+    >
       {{ value }}
     </span>
   </div>
