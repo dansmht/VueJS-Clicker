@@ -7,7 +7,6 @@ export default [
     path: '/',
     name: 'Updates',
     component: UpdatesPage,
-    props: true,
   },
   {
     path: '/achievements',

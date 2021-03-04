@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import store from '@/store';
 import IconPlus from '@/components/common/Icons/IconPlus.vue';
 import IconUpArrow from '@/components/common/Icons/IconUpArrow.vue';
 import { abbreviateNumber } from '@/shared/functions/abbreviateNumber';
@@ -75,10 +76,6 @@ export default {
       type: Number,
       required: true,
     },
-    gold: {
-      type: Number,
-      required: true,
-    },
     purchaseCount: {
       type: Number,
       required: true,
@@ -90,7 +87,13 @@ export default {
   },
   computed: {
     upgradeInfo() {
-      return calcUpgradeInfo(this.purchaseCount, this.level, this.cost, this.gold, this.growthRate);
+      return calcUpgradeInfo(
+        this.purchaseCount,
+        this.level,
+        this.cost,
+        store.current.gold,
+        this.growthRate,
+      );
     },
     abbreviatedCost() {
       return abbreviateNumber(this.fullCost);
@@ -114,7 +117,7 @@ export default {
       return this.upgradeInfo.levelsToUp;
     },
     isAvailable() {
-      return this.gold >= this.fullCost;
+      return store.current.gold >= this.fullCost;
     },
     iconColor() {
       return this.isAvailable
@@ -125,7 +128,7 @@ export default {
   },
   methods: {
     onClickHandler() {
-      if (this.gold >= this.fullCost) {
+      if (store.current.gold >= this.fullCost) {
         this.$emit('upgradeCard', {
           id: this.idx,
           gold: this.fullCost,

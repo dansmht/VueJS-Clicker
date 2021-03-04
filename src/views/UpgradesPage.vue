@@ -10,7 +10,6 @@
           :description="upgrade.description"
           :level="upgrade.level"
           :cost="upgrade.cost"
-          :gold="gold"
           :purchase-count="purchaseCount"
           :growth-rate="upgrade.growthRate"
           @upgradeCard="upgradeCard"
@@ -34,10 +33,6 @@ export default {
   props: {
     upgrades: {
       type: Array,
-      required: true,
-    },
-    gold: {
-      type: Number,
       required: true,
     },
   },

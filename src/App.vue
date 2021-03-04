@@ -3,21 +3,15 @@
     id="app"
     @contextmenu.prevent
   >
-    <state-bar :gold="current.gold" />
+    <state-bar />
     <the-nav />
     <main>
       <div class="container main-wrapper">
         <router-view
           :upgrades="upgradesToShow"
-          :gold="current.gold"
-          :current="current"
-          :total="total"
           @upgradeCard="upgradeCard"
         />
         <monster-block
-          :monster-index="current.monsterIndex"
-          :damage="current.damage"
-          :damage-per-sec="current.damagePerSec"
           @enrollGold="enrollGold"
           @hitMonster="hitMonster"
           @killMonster="killMonster"
@@ -28,35 +22,32 @@
 </template>
 
 <script>
+import store from '@/store';
 import StateBar from '@/components/StateBar.vue';
 import TheNav from '@/components/TheNav.vue';
 import MonsterBlock from '@/components/MonsterBlock/MonsterBlock.vue';
 import { calcGoldForKilling } from '@/shared/functions/formulas';
-import { current, total, upgrades } from '@/shared/initialState/initialAppState';
 
 import '@/assets/scss/style.scss';
 
 export default {
   components: { MonsterBlock, TheNav, StateBar },
-  data() {
-    return {
-      total,
-      current,
-      upgrades,
-    };
-  },
   computed: {
     upgradesToShow() {
-      return this.upgrades.filter((upgrade) => upgrade.show);
+      return store.upgrades.filter((upgrade) => upgrade.show);
     },
     lastUpgradeToShow() {
       return this.upgradesToShow[this.upgradesToShow.length - 1];
     },
   },
   watch: {
-    'current.gold': function (val) {
-      if (this.upgrades.length > this.upgradesToShow.length && val >= this.lastUpgradeToShow.cost) {
-        const nextUpgradeToShowId = this.upgrades[this.upgradesToShow.length].id;
+    '$root.store.current.gold': function (val) {
+      console.log('watch gold');
+      if (
+        store.upgrades.length > this.upgradesToShow.length
+        && val >= this.lastUpgradeToShow.cost
+      ) {
+        const nextUpgradeToShowId = store.upgrades[this.upgradesToShow.length].id;
         this.unlockUpgrade(nextUpgradeToShowId);
       }
     },
@@ -87,16 +78,19 @@ export default {
     //
     // localStorage.setItem('Sentinel', Math.random().toString());
   },
+  mounted() {
+    console.log(this, store);
+  },
   methods: {
     nextMonster() {
-      this.current.monsterIndex++;
+      store.current.monsterIndex++;
     },
     enrollGold(gold) {
-      this.current.gold += gold;
-      this.total.gold += gold;
+      store.current.gold += gold;
+      store.total.gold += gold;
     },
     writeOffGold(gold) {
-      this.current.gold -= gold;
+      store.current.gold -= gold;
     },
     upgradeCard({
       id,
@@ -105,31 +99,31 @@ export default {
       value,
     }) {
       this.writeOffGold(gold);
-      const upgrade = this.upgrades.find((u) => u.id === id);
+      const upgrade = store.upgrades.find((u) => u.id === id);
       upgrade.level += levels;
-      this.total.purchasedLevels += levels;
+      store.total.purchasedLevels += levels;
       if (id === 1) {
-        this.current.damage += value;
+        store.current.damage += value;
       } else {
-        this.current.damagePerSec += value;
+        store.current.damagePerSec += value;
       }
     },
     hitMonster(damage, isByClick) {
       if (isByClick) {
-        this.total.clicks++;
+        store.total.clicks++;
       }
-      this.total.damage += damage;
+      store.total.damage += damage;
     },
     killMonster(isBoss) {
-      this.enrollGold(calcGoldForKilling(this.current.monsterIndex, isBoss));
+      this.enrollGold(calcGoldForKilling(store.current.monsterIndex, isBoss));
       this.nextMonster();
       if (isBoss) {
-        this.total.kills.bosses++;
+        store.total.kills.bosses++;
       }
-      this.total.kills.monsters++;
+      store.total.kills.monsters++;
     },
     unlockUpgrade(id) {
-      const upgrade = this.upgrades.find((u) => u.id === id);
+      const upgrade = store.upgrades.find((u) => u.id === id);
       upgrade.show = true;
     },
   },

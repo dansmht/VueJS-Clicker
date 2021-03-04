@@ -10,11 +10,12 @@
       :max-health-points="maxHealthPoints"
     />
     <skills-area />
-    {{ monsterIndex }}
+    {{ $root.store.current.monsterIndex }}
   </div>
 </template>
 
 <script>
+import store from '@/store';
 import BaseMonster from '@/components/MonsterBlock/Monsters/BaseMonster.vue';
 import MonsterParams from '@/components/MonsterBlock/MonsterParams.vue';
 import SkillsArea from '@/components/MonsterBlock/SkillsArea.vue';
@@ -24,20 +25,6 @@ import { getRandomAnotherIndex } from '@/shared/functions/getRandom';
 export default {
   name: 'MonsterBlock',
   components: { SkillsArea, MonsterParams, BaseMonster },
-  props: {
-    monsterIndex: {
-      type: Number,
-      required: true,
-    },
-    damage: {
-      type: Number,
-      required: true,
-    },
-    damagePerSec: {
-      type: Number,
-      required: true,
-    },
-  },
   data() {
     return {
       currentHealthPoints: 1,
@@ -50,7 +37,7 @@ export default {
   },
   computed: {
     isBoss() {
-      return !(this.monsterIndex % 50);
+      return !(store.current.monsterIndex % 50);
     },
     monsters: {
       get() {
@@ -110,8 +97,8 @@ export default {
     },
     hitMonster(isByClick) {
       const damage = isByClick
-        ? this.damage
-        : this.damagePerSec;
+        ? store.current.damage
+        : store.current.damagePerSec;
 
       const realDamage = this.currentHealthPoints > damage
         ? damage
@@ -121,7 +108,7 @@ export default {
       this.$emit('hitMonster', realDamage, isByClick);
     },
     calcMonsterStats() {
-      const hp = calcMonsterHP(this.monsterIndex, this.isBoss);
+      const hp = calcMonsterHP(store.current.monsterIndex, this.isBoss);
       this.maxHealthPoints = hp;
       this.currentHealthPoints = hp;
     },

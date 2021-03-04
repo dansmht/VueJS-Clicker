@@ -14,23 +14,18 @@
 </template>
 
 <script>
+import store from '@/store';
 import { abbreviateNumber } from '@/shared/functions/abbreviateNumber';
 import { formatNum } from '@/shared/functions/formatNum';
 
 export default {
   name: 'StateBar',
-  props: {
-    gold: {
-      type: Number,
-      required: true,
-    },
-  },
   computed: {
     abbreviatedGold() {
-      return abbreviateNumber(this.gold);
+      return abbreviateNumber(store.current.gold);
     },
     formattedGold() {
-      return formatNum(this.gold);
+      return formatNum(store.current.gold);
     },
   },
 };
