@@ -1,5 +1,19 @@
 .stats-block {
   @include working-area;
-
   @include scroll-bar;
+
+  .stats-wrapper {
+    height: 100%;
+    margin-right: 16px;
+    padding: 20px;
+    background: var(--darker-color);
+
+    .stats-divider {
+      margin-bottom: 40px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 }

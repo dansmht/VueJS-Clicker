@@ -1,21 +1,23 @@
 <template>
   <div class="stats-block">
     <div class="scroll-wrapper">
-      <div class="stats-divider">
-        <stats-item
-          v-for="item in damageList"
-          :key="item.title"
-          :title="item.title"
-          :value="item.value"
-        />
-      </div>
-      <div class="stats-divider">
-        <stats-item
-          v-for="item in restStatsList"
-          :key="item.title"
-          :title="item.title"
-          :value="item.value"
-        />
+      <div class="stats-wrapper">
+        <div class="stats-divider">
+          <stats-item
+            v-for="item in damageList"
+            :key="item.title"
+            :title="item.title"
+            :value="item.value"
+          />
+        </div>
+        <div class="stats-divider">
+          <stats-item
+            v-for="item in restStatsList"
+            :key="item.title"
+            :title="item.title"
+            :value="item.value"
+          />
+        </div>
       </div>
     </div>
   </div>
