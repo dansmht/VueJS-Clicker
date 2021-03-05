@@ -1,3 +1,5 @@
 .stats-block {
   @include working-area;
+
+  @include scroll-bar;
 }

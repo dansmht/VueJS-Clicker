@@ -10,7 +10,7 @@
   margin: 20px 10px 20px;
 }
 
-@mixin scroll-bar {
+@mixin scroll-bar-y {
   &::-webkit-scrollbar {
     width: 4px;
   }
@@ -21,5 +21,18 @@
 
   &::-webkit-scrollbar-thumb {
     background: #727272;
+  }
+}
+
+@mixin scroll-bar {
+  .scroll-wrapper {
+    @include scroll-bar-y;
+
+    height: calc(100% - 40px);
+    overflow-y: scroll;
+  }
+
+  .upgrade-list {
+    margin-right: 16px;
   }
 }

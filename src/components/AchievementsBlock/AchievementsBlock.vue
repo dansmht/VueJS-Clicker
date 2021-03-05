@@ -1,6 +1,8 @@
 <template>
   <div class="achievements-block">
-    <h1>AchievementsBlock</h1>
+    <div class="scroll-wrapper">
+      <h1>AchievementsBlock</h1>
+    </div>
   </div>
 </template>
 
