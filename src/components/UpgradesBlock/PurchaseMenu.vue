@@ -9,8 +9,7 @@
         :key="item.text"
         class="list-item"
         :class="{active: purchaseCount === item.value}"
-        @click.left="onClickHandler(item.value)"
-        @click.right="onClickHandler(item.value)"
+        @click="onClickHandler(item.value)"
       >
         {{ item.text }}
       </li>

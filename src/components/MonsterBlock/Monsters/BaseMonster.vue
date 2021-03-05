@@ -1,8 +1,7 @@
 <template>
   <div
     class="monster"
-    @click.left="onClickHandler"
-    @click.right="onClickHandler"
+    @click="onClickHandler"
   >
     <component :is="componentName" />
   </div>
