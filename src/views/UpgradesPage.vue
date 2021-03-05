@@ -1,7 +1,7 @@
 <template>
-  <div class="update-page">
+  <div class="upgrade-page">
     <div class="scroll-wrapper">
-      <ul class="list">
+      <ul class="upgrade-list">
         <upgrade-card
           v-for="upgrade in upgrades"
           :key="upgrade.id"
