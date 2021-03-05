@@ -1,7 +1,7 @@
 <template>
-  <div class="stats-page">
+  <div class="stats-block">
     <div class="stats-divider">
-      <stats-block
+      <stats-item
         v-for="item in damageList"
         :key="item.title"
         :title="item.title"
@@ -9,7 +9,7 @@
       />
     </div>
     <div class="stats-divider">
-      <stats-block
+      <stats-item
         v-for="item in restStatsList"
         :key="item.title"
         :title="item.title"
@@ -20,11 +20,11 @@
 </template>
 
 <script>
-import StatsBlock from '@/components/StatsPage/StatsBlock.vue';
+import StatsItem from '@/components/StatsBlock/StatsItem.vue';
 
 export default {
-  name: 'StatsPage',
-  components: { StatsBlock },
+  name: 'StatsBlock',
+  components: { StatsItem },
   props: {
     current: {
       type: Object,

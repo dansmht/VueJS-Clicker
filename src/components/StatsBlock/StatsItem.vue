@@ -1,5 +1,5 @@
 <template>
-  <div class="stats-block">
+  <div class="stats-item">
     <span class="stats-title">
       {{ title }}
     </span>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'StatsBlock',
+  name: 'StatsItem',
   props: {
     title: {
       type: String,

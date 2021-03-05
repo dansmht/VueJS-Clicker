@@ -2,42 +2,41 @@
   <nav class="nav">
     <div class="container">
       <ul class="nav-list">
-        <router-link
-          v-for="route in routes"
-          :key="route.name"
-          v-slot="{ href, navigate, isActive }"
-          :to="route.path"
-          custom
-          exact
+        <li
+          v-for="tab in tabs"
+          :key="tab"
+          class="nav-list-item"
+          :class="{active: tab === activeBlock}"
+          @click="changeActiveTab(tab)"
         >
-          <li class="nav-list-item">
-            <slot>
-              <a
-                class="nav-list-link"
-                :class="isActive && 'active'"
-                :href="href"
-                @click="navigate"
-              >
-                {{ route.name }}
-              </a>
-            </slot>
-          </li>
-        </router-link>
+          {{ tab }}
+        </li>
       </ul>
     </div>
   </nav>
 </template>
 
 <script>
-import routes from '@/router/list';
-
 export default {
   name: 'TheNav',
+  props: {
+    activeBlock: {
+      type: String,
+      required: true,
+    },
+  },
   computed: {
-    routes: {
+    tabs: {
       get() {
-        return routes;
+        return ['Upgrades', 'Achievements', 'Stats'];
       },
+    },
+  },
+  methods: {
+    changeActiveTab(tab) {
+      if (tab !== this.activeBlock) {
+        this.$emit('changeActiveTab', tab);
+      }
     },
   },
 };

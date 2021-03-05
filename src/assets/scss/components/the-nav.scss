@@ -7,24 +7,21 @@
     align-items: center;
 
     .nav-list-item {
+      display: inline-block;
+      width: calc(500px / 3);
+      text-align: center;
+      color: var(--font-sub-color);
+      line-height: 40px;
+      text-decoration: none;
 
-      .nav-list-link {
-        display: inline-block;
-        width: calc(500px / 3);
-        text-align: center;
-        color: var(--font-sub-color);
-        line-height: 40px;
-        text-decoration: none;
+      &:hover {
+        color: var(--font-main-color);
+      }
 
-        &:hover {
-          color: var(--font-main-color);
-        }
-
-        &.active {
-          color: var(--font-main-color);
-          border-radius: 10px 10px 0 0;
-          background: var(--primary-color);
-        }
+      &.active {
+        color: var(--font-main-color);
+        border-radius: 10px 10px 0 0;
+        background: var(--primary-color);
       }
     }
   }

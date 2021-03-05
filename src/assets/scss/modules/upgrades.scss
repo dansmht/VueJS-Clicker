@@ -1,0 +1,14 @@
+.upgrade-block {
+  @include working-area;
+
+  .scroll-wrapper {
+    @include scroll-bar;
+
+    height: calc(100% - 40px);
+    overflow-y: scroll;
+  }
+
+  .upgrade-list {
+    margin-right: 16px;
+  }
+}

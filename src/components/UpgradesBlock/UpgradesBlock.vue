@@ -1,5 +1,5 @@
 <template>
-  <div class="upgrade-page">
+  <div class="upgrade-block">
     <div class="scroll-wrapper">
       <ul class="upgrade-list">
         <upgrade-card
@@ -25,11 +25,11 @@
 </template>
 
 <script>
-import UpgradeCard from '@/components/UpgradesPage/UpgradeCard.vue';
-import PurchaseMenu from '@/components/UpgradesPage/PurchaseMenu.vue';
+import UpgradeCard from '@/components/UpgradesBlock/UpgradeCard.vue';
+import PurchaseMenu from '@/components/UpgradesBlock/PurchaseMenu.vue';
 
 export default {
-  name: 'UpgradesPage',
+  name: 'UpgradesBlock',
   components: { PurchaseMenu, UpgradeCard },
   props: {
     upgrades: {

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import routes from './list';
+import MainLayout from '@/views/MainLayout.vue';
 
 Vue.use(VueRouter);
 
@@ -9,16 +9,13 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
 });
 
-routes.forEach((route) => {
-  router.addRoute({
-    name: route.name,
-    path: route.path,
-    component: route.component,
-    props: route.props || null,
-  });
+router.addRoute({
+  name: 'Main',
+  path: '/',
+  component: MainLayout,
 });
 
-router.addRoute('*', {
+router.addRoute({
   path: '*',
   redirect: '/',
 });

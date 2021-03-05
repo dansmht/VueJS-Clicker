@@ -9,3 +9,17 @@
   height: calc(100vh - 120px);
   margin: 20px 10px 20px;
 }
+
+@mixin scroll-bar {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--darker-color);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #727272;
+  }
+}
