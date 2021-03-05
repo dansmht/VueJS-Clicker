@@ -89,8 +89,13 @@ export default {
     },
   },
   computed: {
-    upgradeInfo() {
-      return calcUpgradeInfo(this.purchaseCount, this.level, this.cost, this.gold, this.growthRate);
+    upgradeInfo: {
+      get() {
+        return this.updateUpgradeInfo();
+      },
+      set(val) {
+        return val;
+      },
     },
     abbreviatedCost() {
       return abbreviateNumber(this.fullCost);
@@ -123,7 +128,17 @@ export default {
         : '#454545';
     },
   },
+  watch: {
+    gold() {
+      if (this.purchaseCount === 0) {
+        this.upgradeInfo = this.updateUpgradeInfo();
+      }
+    },
+  },
   methods: {
+    updateUpgradeInfo() {
+      return calcUpgradeInfo(this.purchaseCount, this.level, this.cost, this.gold, this.growthRate);
+    },
     onClickHandler() {
       if (this.gold >= this.fullCost) {
         this.$emit('upgradeCard', {
