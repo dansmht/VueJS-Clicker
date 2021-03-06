@@ -10,6 +10,7 @@
 <script>
 import RatKingMonster from '@/components/MonsterBlock/Monsters/SVG/RatKingMonster.vue';
 import VoidSpecterMonster from '@/components/MonsterBlock/Monsters/SVG/VoidSpecterMonster.vue';
+import ShinexvineMonster from '@/components/MonsterBlock/Monsters/SVG/ShinexvineMonster.vue';
 import RatMonster from '@/components/MonsterBlock/Monsters/SVG/RatMonster.vue';
 import SpiderMonster from '@/components/MonsterBlock/Monsters/SVG/SpiderMonster.vue';
 import EbonyStatueMonster from '@/components/MonsterBlock/Monsters/SVG/EbonyStatueMonster.vue';
@@ -20,14 +21,15 @@ import SwordsKeeperMonster from '@/components/MonsterBlock/Monsters/SVG/SwordsKe
 export default {
   name: 'BaseMonster',
   components: {
-    SwordsKeeperMonster,
     RatKingMonster,
     VoidSpecterMonster,
+    ShinexvineMonster,
     RatMonster,
     SpiderMonster,
     EbonyStatueMonster,
     OvergrownBeetleMonster,
     WildBoneDogMonster,
+    SwordsKeeperMonster,
   },
   props: {
     componentName: {

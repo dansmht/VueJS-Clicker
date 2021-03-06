@@ -83,6 +83,9 @@ export default {
         }, {
           name: 'Void Specter',
           componentName: 'void-specter-monster',
+        }, {
+          name: 'Shinexvine',
+          componentName: 'shinexvine-monster',
         }];
       },
     },
