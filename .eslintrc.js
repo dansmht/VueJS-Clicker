@@ -15,6 +15,8 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-plusplus': 'off',
     'arrow-body-style': 'off',
+    'global-require': 'off',
+    'import/no-dynamic-require': 'off',
   },
   overrides: [
     {

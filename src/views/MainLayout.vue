@@ -13,7 +13,10 @@
           :gold="current.gold"
           @upgradeCard="upgradeCard"
         />
-        <achievements-block v-show="activeBlock === 'Achievements'" />
+        <achievements-block
+          v-show="activeBlock === 'Achievements'"
+          :achievements="achievements"
+        />
         <stats-block
           v-show="activeBlock === 'Stats'"
           :current="current"
