@@ -40,7 +40,13 @@ import StateBar from '@/components/StateBar.vue';
 import TheNav from '@/components/TheNav.vue';
 import MonsterBlock from '@/components/MonsterBlock/MonsterBlock.vue';
 import { calcGoldForKilling } from '@/shared/functions/formulas';
-import { current, total, upgrades } from '@/shared/initialState/initialAppState';
+import {
+  achievements,
+  current,
+  total,
+  upgrades,
+} from '@/shared/initialState/initialAppState';
+import { filterAchievementsByProperty } from '@/shared/functions/filterAchievements';
 
 export default {
   name: 'MainLayout',
@@ -57,6 +63,7 @@ export default {
       total,
       current,
       upgrades,
+      achievements,
       activeBlock: 'Upgrades',
     };
   },
@@ -67,6 +74,12 @@ export default {
     lastUpgradeToShow() {
       return this.upgradesToShow[this.upgradesToShow.length - 1];
     },
+    unreceivedAchievements() {
+      return this.achievements.filter((a) => !a.received);
+    },
+    achievementsByTotal() {
+      return filterAchievementsByProperty(this.unreceivedAchievements, 'total');
+    },
   },
   watch: {
     'current.gold': function (val) {
@@ -74,6 +87,21 @@ export default {
         const nextUpgradeToShowId = this.upgrades[this.upgradesToShow.length].id;
         this.unlockUpgrade(nextUpgradeToShowId);
       }
+    },
+    total: {
+      handler() {
+        if (this.achievementsByTotal.length) {
+          this.achievementsByTotal.forEach((a) => {
+            const deepProps = a.property.split('.');
+            const val = deepProps.reduce((acc, cur) => acc[cur], this);
+
+            if (val >= a.value) {
+              this.achievements.find((ach) => ach.id === a.id).received = true;
+            }
+          });
+        }
+      },
+      deep: true,
     },
   },
   beforeCreate() {

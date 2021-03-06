@@ -10,15 +10,16 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'semi': 2,
+    semi: 2,
     'linebreak-style': ['error', 'unix'],
     'import/prefer-default-export': 'off',
     'no-plusplus': 'off',
+    'arrow-body-style': 'off',
   },
   overrides: [
     {
-      'files': ['src/components/MonsterBlock/Monsters/SVG/*.vue'],
-      'rules': {
+      files: ['src/components/MonsterBlock/Monsters/SVG/*.vue'],
+      rules: {
         'max-len': 'off',
         'vue/max-attributes-per-line': 'off',
         'vue/html-closing-bracket-spacing': 'off',

@@ -1,13 +1,18 @@
 <template>
   <div class="achievements-block">
     <div class="scroll-wrapper">
-      <h1>AchievementsBlock</h1>
+      <div class="achievements-list">
+        <achievements-item />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import AchievementsItem from '@/components/AchievementsBlock/AchievementsItem.vue';
+
 export default {
   name: 'AchievementsBlock',
+  components: { AchievementsItem },
 };
 </script>
