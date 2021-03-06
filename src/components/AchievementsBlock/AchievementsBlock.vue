@@ -3,7 +3,7 @@
     <div class="scroll-wrapper">
       <ul class="achievements-list">
         <achievements-item
-          v-for="a in achievements"
+          v-for="a in sortedAchievements"
           :key="a.id"
           :idx="a.id"
           :name="a.name"
@@ -26,6 +26,11 @@ export default {
     achievements: {
       type: Array,
       required: true,
+    },
+  },
+  computed: {
+    sortedAchievements() {
+      return [...this.achievements].sort((a, b) => (a.received > b.received ? -1 : 1));
     },
   },
 };
