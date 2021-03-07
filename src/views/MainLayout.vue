@@ -49,7 +49,7 @@ import {
   total,
   upgrades,
 } from '@/shared/initialState/initialAppState';
-import { filterAchievementsByProperty } from '@/shared/functions/filterAchievements';
+import { checkAchievementsByValue, filterAchievementsByProperty } from '@/shared/functions/achievements';
 
 export default {
   name: 'MainLayout',
@@ -94,14 +94,7 @@ export default {
     total: {
       handler() {
         if (this.achievementsByTotal.length) {
-          this.achievementsByTotal.forEach((a) => {
-            const deepProps = a.property.split('.');
-            const val = deepProps.reduce((acc, cur) => acc[cur], this);
-
-            if (val >= a.value) {
-              this.achievements.find((ach) => ach.id === a.id).received = true;
-            }
-          });
+          checkAchievementsByValue(this.achievementsByTotal, this);
         }
       },
       deep: true,

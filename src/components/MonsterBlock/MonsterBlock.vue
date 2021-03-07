@@ -121,7 +121,9 @@ export default {
         : this.currentHealthPoints;
 
       this.currentHealthPoints -= realDamage;
-      this.$emit('hitMonster', realDamage, isByClick);
+      if (realDamage > 0) {
+        this.$emit('hitMonster', realDamage, isByClick);
+      }
     },
     calcMonsterStats() {
       const hp = calcMonsterHP(this.monsterIndex, this.isBoss);

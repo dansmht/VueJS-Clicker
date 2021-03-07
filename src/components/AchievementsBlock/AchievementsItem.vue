@@ -56,7 +56,7 @@ export default {
       return this.hidden ? '???' : this.name;
     },
     achievementImgSrc() {
-      return this.received
+      return !this.received
         ? require(`../../assets/images/achievements/achievement_${this.idx}.png`)
         : require('../../assets/images/achievements/unreceived.png');
     },
