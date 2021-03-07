@@ -3,7 +3,9 @@
     <state-bar :gold="current.gold" />
     <the-nav
       :active-block="activeBlock"
+      :unchecked-achievements="uncheckedAchievements"
       @changeActiveTab="changeActiveTab"
+      @resetUncheckedAchievements="resetUncheckedAchievements"
     />
     <main>
       <div class="container main-wrapper">
@@ -49,7 +51,7 @@ import {
   total,
   upgrades,
 } from '@/shared/initialState/initialAppState';
-import { checkAchievementsByValue, filterAchievementsByProperty } from '@/shared/functions/achievements';
+import { filterAchievementsByProperty } from '@/shared/functions/achievements';
 
 export default {
   name: 'MainLayout',
@@ -68,6 +70,7 @@ export default {
       upgrades,
       achievements,
       activeBlock: 'Upgrades',
+      uncheckedAchievements: 0,
     };
   },
   computed: {
@@ -94,7 +97,7 @@ export default {
     total: {
       handler() {
         if (this.achievementsByTotal.length) {
-          checkAchievementsByValue(this.achievementsByTotal, this);
+          this.checkAchievementsByValue(this.achievementsByTotal);
         }
       },
       deep: true,
@@ -173,6 +176,29 @@ export default {
     },
     changeActiveTab(tab) {
       this.activeBlock = tab;
+    },
+    checkAchievementsByValue(achievementsArr) {
+      achievementsArr.forEach((a) => {
+        const deepProps = a.property.split('.');
+        const val = deepProps.reduce((acc, cur) => acc[cur], this);
+
+        if (val >= a.value) {
+          const achievement = this.achievements.find((ach) => ach.id === a.id);
+          achievement.received = true;
+          achievement.hidden = false;
+          this.receiveAchievement(achievement.id);
+        }
+      });
+    },
+    receiveAchievement(id) {
+      // notify player
+      console.log('receiveAchievement id:', id);
+      if (this.activeBlock !== 'Achievements') {
+        this.uncheckedAchievements++;
+      }
+    },
+    resetUncheckedAchievements() {
+      this.uncheckedAchievements = 0;
     },
   },
 };

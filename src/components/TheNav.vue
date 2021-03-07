@@ -10,6 +10,9 @@
           @click="changeActiveTab(tab)"
         >
           {{ tab }}
+          <span v-if="uncheckedAchievements && tab === 'Achievements'">
+            ({{ uncheckedAchievements }})
+          </span>
         </li>
       </ul>
     </div>
@@ -24,6 +27,10 @@ export default {
       type: String,
       required: true,
     },
+    uncheckedAchievements: {
+      type: Number,
+      required: true,
+    },
   },
   computed: {
     tabs: {
@@ -36,6 +43,9 @@ export default {
     changeActiveTab(tab) {
       if (tab !== this.activeBlock) {
         this.$emit('changeActiveTab', tab);
+        if (tab === 'Achievements' && this.uncheckedAchievements !== 0) {
+          this.$emit('resetUncheckedAchievements');
+        }
       }
     },
   },
