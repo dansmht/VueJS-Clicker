@@ -6,8 +6,8 @@
           Gold: {{ abbreviatedGold }}
         </span>
       </div>
-      <div class="diamonds">
-        Diamonds:
+      <div class="sapphires">
+        Sapphires:
       </div>
     </div>
   </div>
