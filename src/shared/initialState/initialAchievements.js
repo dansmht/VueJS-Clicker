@@ -153,6 +153,14 @@ export const initialAchievements = [{
   description: 'Click 666 times',
   received: false,
   hidden: true,
+  property: clickedTimes,
+  value: 666,
+}, {
+  id: 20,
+  name: 'come up with',
+  description: 'Buy 666 upgrades',
+  received: false,
+  hidden: true,
   property: purchasedUpgradesLevels,
   value: 666,
 }];
