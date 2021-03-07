@@ -5,8 +5,21 @@
   .achievements-list {
     display: flex;
     flex-wrap: wrap;
-    column-gap: 10px;
-    row-gap: 10px;
     margin-right: 16px;
+  }
+
+  .achievements-received {
+    width: calc(var(--options-block-width) - 20px);
+    height: 40px;
+    background: var(--darkest-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: var(--font-sub-color);
+
+    & > div {
+      color: inherit;
+    }
   }
 }

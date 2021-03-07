@@ -13,6 +13,10 @@
         />
       </ul>
     </div>
+    <div class="achievements-received">
+      <div>Achievements:</div>
+      <div>{{ `${receivedAchievements}/${achievements.length}` }}</div>
+    </div>
   </div>
 </template>
 
@@ -25,6 +29,10 @@ export default {
   props: {
     achievements: {
       type: Array,
+      required: true,
+    },
+    receivedAchievements: {
+      type: Number,
       required: true,
     },
   },

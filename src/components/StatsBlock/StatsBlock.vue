@@ -68,6 +68,9 @@ export default {
       }, {
         title: 'Total Number Of Purchased Levels:',
         value: this.total.purchasedLevels,
+      }, {
+        title: 'Received Achievements:',
+        value: this.total.receivedAchievements,
       }];
     },
   },

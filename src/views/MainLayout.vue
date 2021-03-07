@@ -18,6 +18,7 @@
         <achievements-block
           v-show="activeBlock === 'Achievements'"
           :achievements="achievements"
+          :received-achievements="total.receivedAchievements"
         />
         <stats-block
           v-show="activeBlock === 'Stats'"
@@ -193,6 +194,7 @@ export default {
     receiveAchievement(id) {
       // notify player
       console.log('receiveAchievement id:', id);
+      this.total.receivedAchievements++;
       if (this.activeBlock !== 'Achievements') {
         this.uncheckedAchievements++;
       }
