@@ -17,7 +17,7 @@
       <div>Achievements:</div>
       <div>
         {{ `${receivedAchievements}/${achievements.length}
-      (${+(receivedAchievements/achievements.length*100)}%)` }}
+      (${+(receivedAchievements / achievements.length * 100)}%)` }}
       </div>
     </div>
   </div>

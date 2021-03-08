@@ -33,6 +33,8 @@
           v-show="activeBlock === 'Shop'"
           :sapphires="current.sapphires"
           :inactive-sapphires="current.inactiveSapphires"
+          :reincarnation-timer="timers.reincarnation"
+          @reincarnate="reincarnate"
         />
         <monster-block
           :monster-index="current.monsterIndex"
@@ -59,10 +61,12 @@ import { calcGoldForKilling } from '@/shared/functions/formulas';
 import {
   achievements,
   current,
+  timers,
   total,
   upgrades,
 } from '@/shared/initialState/initialAppState';
 import { filterAchievementsByProperty } from '@/shared/functions/achievements';
+import { convertMinutesToMs, timersNames } from '@/shared/functions/timers';
 
 export default {
   name: 'MainLayout',
@@ -77,10 +81,11 @@ export default {
   },
   data() {
     return {
-      total,
-      current,
-      upgrades,
+      total: JSON.parse(JSON.stringify(total)),
+      current: JSON.parse(JSON.stringify(current)),
+      upgrades: JSON.parse(JSON.stringify(upgrades)),
       achievements,
+      timers,
       activeBlock: 'Upgrades',
       uncheckedAchievements: 0,
     };
@@ -140,6 +145,9 @@ export default {
     // }, false);
     //
     // localStorage.setItem('Sentinel', Math.random().toString());
+  },
+  mounted() {
+    this.startTimer(timersNames.reincarnation);
   },
   methods: {
     nextMonster() {
@@ -225,6 +233,26 @@ export default {
         this.current.inactiveSapphires++;
         this.total.sapphires++;
       }
+    },
+    startTimer(timer) {
+      const timerId = setInterval(() => {
+        this.timers[timer] -= 1000;
+        if (this.timers[timer] <= 0) {
+          clearInterval(timerId);
+        }
+      }, 1000);
+    },
+    resetTimer(timer, minutes) {
+      this.timers[timer] = convertMinutesToMs(minutes);
+      this.startTimer(timer);
+    },
+    reincarnate() {
+      const tempSapphires = this.current.sapphires + this.current.inactiveSapphires;
+      this.resetTimer(timersNames.reincarnation, 5);
+      // reset current stats and upgrades
+      this.current = JSON.parse(JSON.stringify(current));
+      this.upgrades = JSON.parse(JSON.stringify(upgrades));
+      this.current.sapphires = tempSapphires;
     },
   },
 };

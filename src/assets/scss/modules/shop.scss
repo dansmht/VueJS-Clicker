@@ -12,9 +12,15 @@
       color: #454545;
       margin-bottom: 20px;
 
-      &:hover {
+      & > span {
+        color: inherit;
+        margin-left: 5px;
+      }
+
+      &.ready:hover {
         background: var(--font-main-color);
         color: var(--darkest-color);
+        cursor: pointer;
       }
     }
   }
