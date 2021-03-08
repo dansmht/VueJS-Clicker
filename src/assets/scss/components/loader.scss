@@ -1,0 +1,183 @@
+.preloader {
+  position: fixed;
+  z-index: 100000;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background: var(--darker-color);
+  overflow: hidden;
+
+  .skull {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%) scale(var(--loader-skull-scale));
+    animation: skull 1.2s linear forwards 0.5s;
+  }
+
+  .sword {
+    position: absolute;
+    top: -200px;
+  }
+
+  .sword-1 {
+    left: 10%;
+    transform: scale(var(--loader-sword-scale)) rotate(-10deg) translateX(-10%);
+    animation: thrust-1 1.2s ease-in forwards 0.5s;
+  }
+
+  .sword-2 {
+    left: 65%;
+    transform: scale(var(--loader-sword-scale)) rotate(25deg) translateX(-10%);
+    animation: thrust-2 1.2s ease-in forwards 0.5s;
+  }
+
+  .sword-3 {
+    left: 85%;
+    transform: scale(var(--loader-sword-scale)) rotate(45deg) translateX(-10%);
+    animation: thrust-3 1.2s ease-in forwards 0.5s;
+  }
+}
+
+.preloader-leave-active {
+  transition: all .5s ease-out;
+}
+
+.preloader-leave-to {
+  opacity: 0;
+}
+
+@keyframes thrust-1 {
+  0% {
+    left: 10%
+  }
+  34% {
+    top: 60%;
+    left: 46%;
+  }
+  36% {
+    top: 64%;
+    left: 48%;
+  }
+  38% {
+    top: 60%;
+    left: 46%;
+  }
+  74% {
+    top: 60%;
+    left: 46%;
+  }
+  76% {
+    top: 62%;
+    left: 45%;
+  }
+  78% {
+    top: 60%;
+    left: 46%;
+  }
+  96% {
+    top: 60%;
+    left: 46%;
+  }
+  98% {
+    top: 62%;
+    left: 44%;
+  }
+  100% {
+    top: 60%;
+    left: 46%;
+  }
+}
+
+@keyframes thrust-2 {
+  40% {
+    top: -200px;
+    left: 65%;
+  }
+  74% {
+    top: 55%;
+    left: 50%;
+  }
+  76% {
+    top: 59%;
+    left: 49%;
+  }
+  78% {
+    top: 55%;
+    left: 50%;
+  }
+  96% {
+    top: 55%;
+    left: 50%;
+  }
+  98% {
+    top: 57%;
+    left: 48%;
+  }
+  100% {
+    top: 55%;
+    left: 50%;
+  }
+}
+
+@keyframes thrust-3 {
+  62% {
+    top: -200px;
+    left: 85%;
+  }
+  96% {
+    top: 55%;
+    left: 56%;
+  }
+  98% {
+    top: 57%;
+    left: 54%;
+  }
+  100% {
+    top: 55%;
+    left: 56%;
+  }
+}
+
+@keyframes skull {
+  0% {
+
+  }
+  34% {
+    top: 70%;
+    left: 50%;
+  }
+  36% {
+    top: 74%;
+    left: 52%;
+  }
+  38% {
+    top: 70%;
+    left: 50%;
+  }
+  74% {
+    top: 70%;
+    left: 50%;
+  }
+  76% {
+    top: 74%;
+    left: 49%;
+  }
+  78% {
+    top: 70%;
+    left: 50%;
+  }
+  96% {
+    top: 70%;
+    left: 50%;
+  }
+  98% {
+    top: 72%;
+    left: 48%;
+  }
+  100% {
+    top: 70%;
+    left: 50%;
+  }
+}

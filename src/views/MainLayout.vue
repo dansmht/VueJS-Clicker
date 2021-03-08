@@ -1,5 +1,6 @@
 <template>
   <div class="vue-js-clicker">
+    <the-loader v-if="loading" />
     <state-bar
       :gold="current.gold"
       :sapphires="current.sapphires"
@@ -51,6 +52,7 @@
 
 <script>
 import bcrypt from 'bcryptjs';
+import TheLoader from '@/components/TheLoader.vue';
 import UpgradesBlock from '@/components/UpgradesBlock/UpgradesBlock.vue';
 import AchievementsBlock from '@/components/AchievementsBlock/AchievementsBlock.vue';
 import StatsBlock from '@/components/StatsBlock/StatsBlock.vue';
@@ -58,6 +60,7 @@ import ShopBlock from '@/components/ShopBlock/ShopBlock.vue';
 import StateBar from '@/components/StateBar.vue';
 import TheNav from '@/components/TheNav.vue';
 import MonsterBlock from '@/components/MonsterBlock/MonsterBlock.vue';
+import AchievementToast from '@/components/AchievementsBlock/AchievementToast.vue';
 import { calcGoldForKilling } from '@/shared/functions/formulas';
 import {
   achievements,
@@ -69,11 +72,11 @@ import {
 import { filterAchievementsByProperty } from '@/shared/functions/achievements';
 import { convertMinutesToMs, timersNames } from '@/shared/functions/timers';
 import { closeMultiTabListener } from '@/shared/functions/multitabs';
-import AchievementToast from '@/components/AchievementsBlock/AchievementToast';
 
 export default {
   name: 'MainLayout',
   components: {
+    TheLoader,
     ShopBlock,
     StatsBlock,
     AchievementsBlock,
@@ -91,6 +94,7 @@ export default {
       timers,
       activeBlock: 'Upgrades',
       uncheckedAchievements: 0,
+      loading: true,
     };
   },
   computed: {
@@ -148,6 +152,10 @@ export default {
   },
   mounted() {
     this.startTimer(timersNames.reincarnation);
+
+    setTimeout(() => {
+      this.loading = false;
+    }, 1800);
   },
   methods: {
     nextMonster() {
