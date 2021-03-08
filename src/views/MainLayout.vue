@@ -211,8 +211,6 @@ export default {
       });
     },
     receiveAchievement(id) {
-      // notify player
-      console.log('receiveAchievement id:', id);
       this.total.receivedAchievements++;
       if (this.activeBlock !== 'Achievements') {
         this.uncheckedAchievements++;
@@ -254,7 +252,6 @@ export default {
       this.current.sapphires = tempSapphires;
     },
     resetPlayerProgress() {
-      console.log('resetPlayerProgress');
       const dataToLocalStorage = JSON.stringify({
         total: JSON.parse(JSON.stringify(total)),
         current: JSON.parse(JSON.stringify(current)),
