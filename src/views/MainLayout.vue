@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import bcrypt from 'bcryptjs';
 import UpgradesBlock from '@/components/UpgradesBlock/UpgradesBlock.vue';
 import AchievementsBlock from '@/components/AchievementsBlock/AchievementsBlock.vue';
 import StatsBlock from '@/components/StatsBlock/StatsBlock.vue';
@@ -67,6 +68,7 @@ import {
 } from '@/shared/initialState/initialAppState';
 import { filterAchievementsByProperty } from '@/shared/functions/achievements';
 import { convertMinutesToMs, timersNames } from '@/shared/functions/timers';
+import { closeMultiTabListener } from '@/shared/functions/multitabs';
 
 export default {
   name: 'MainLayout',
@@ -121,30 +123,27 @@ export default {
     },
   },
   beforeCreate() {
-    // test for multitabs
-    window.session = Math.random().toString();
-    localStorage.setItem('session', window.session);
-    const onStorage = (e) => {
-      if (e.key === 'session' && e.newValue !== window.session) {
-        localStorage.setItem('multitab', window.session);
-      }
-      if (e.key === 'multitab' && e.newValue && e.newValue !== window.session) {
-        window.removeEventListener('storage', onStorage);
-        localStorage.setItem('session', localStorage.getItem('multitab'));
-        localStorage.removeItem('multitab');
-        alert('Multitab');
-        window.close();
-      }
-    };
-    window.addEventListener('storage', onStorage);
+    localStorage.setItem('ATTENTION', 'Please do not change anything here, otherwise the consequences will not please you.'.toUpperCase());
 
-    // second way
-    // window.addEventListener('storage', () => {
-    //   window.alert('another window or tab is working on the same localStorage');
-    //   window.close();
-    // }, false);
-    //
-    // localStorage.setItem('Sentinel', Math.random().toString());
+    closeMultiTabListener();
+  },
+  async created() {
+    const data = localStorage.getItem('data');
+    const hashedData = localStorage.getItem('secret');
+
+    if (!data || !hashedData) {
+      this.resetPlayerProgress();
+    } else {
+      const isMatched = await bcrypt.compare(data, hashedData);
+
+      if (!isMatched) {
+        this.resetPlayerProgress();
+      } else {
+        this.syncWithLocalStorage();
+      }
+    }
+
+    setInterval(this.saveGame, 5000);
   },
   mounted() {
     this.startTimer(timersNames.reincarnation);
@@ -253,6 +252,44 @@ export default {
       this.current = JSON.parse(JSON.stringify(current));
       this.upgrades = JSON.parse(JSON.stringify(upgrades));
       this.current.sapphires = tempSapphires;
+    },
+    resetPlayerProgress() {
+      console.log('resetPlayerProgress');
+      const dataToLocalStorage = JSON.stringify({
+        total: JSON.parse(JSON.stringify(total)),
+        current: JSON.parse(JSON.stringify(current)),
+        upgrades: JSON.parse(JSON.stringify(upgrades)),
+        achievements,
+        timers,
+        activeBlock: 'Upgrades',
+        uncheckedAchievements: 0,
+      });
+
+      this.saveDataToLocalStorage(dataToLocalStorage);
+    },
+    async saveDataToLocalStorage(data) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedData = await bcrypt.hash(data, salt);
+      localStorage.setItem('data', data);
+      localStorage.setItem('secret', hashedData);
+    },
+    syncWithLocalStorage() {
+      const dataToSync = JSON.parse(localStorage.getItem('data'));
+
+      Object.assign(this, dataToSync);
+    },
+    saveGame() {
+      const dataToSave = JSON.stringify({
+        total: this.total,
+        current: this.current,
+        upgrades: this.upgrades,
+        achievements: this.achievements,
+        timers: this.timers,
+        activeBlock: this.activeBlock,
+        uncheckedAchievements: this.uncheckedAchievements,
+      });
+
+      this.saveDataToLocalStorage(dataToSave);
     },
   },
 };
