@@ -71,6 +71,9 @@ export default {
       }, {
         title: 'Received Achievements:',
         value: this.total.receivedAchievements,
+      }, {
+        title: 'Received Sapphires:',
+        value: this.total.sapphires,
       }];
     },
   },

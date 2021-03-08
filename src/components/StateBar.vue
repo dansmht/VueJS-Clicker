@@ -7,7 +7,8 @@
         </span>
       </div>
       <div class="sapphires">
-        Sapphires:
+        Sapphires: {{ sapphires }}
+        <span v-if="inactiveSapphires">(+{{ inactiveSapphires }})</span>
       </div>
     </div>
   </div>
@@ -21,6 +22,14 @@ export default {
   name: 'StateBar',
   props: {
     gold: {
+      type: Number,
+      required: true,
+    },
+    sapphires: {
+      type: Number,
+      required: true,
+    },
+    inactiveSapphires: {
       type: Number,
       required: true,
     },

@@ -1,6 +1,10 @@
 <template>
   <div class="vue-js-clicker">
-    <state-bar :gold="current.gold" />
+    <state-bar
+      :gold="current.gold"
+      :sapphires="current.sapphires"
+      :inactive-sapphires="current.inactiveSapphires"
+    />
     <the-nav
       :active-block="activeBlock"
       :unchecked-achievements="uncheckedAchievements"
@@ -25,7 +29,11 @@
           :current="current"
           :total="total"
         />
-        <shop-block v-show="activeBlock === 'Shop'" />
+        <shop-block
+          v-show="activeBlock === 'Shop'"
+          :sapphires="current.sapphires"
+          :inactive-sapphires="current.inactiveSapphires"
+        />
         <monster-block
           :monster-index="current.monsterIndex"
           :damage="current.damage"
@@ -43,6 +51,7 @@
 import UpgradesBlock from '@/components/UpgradesBlock/UpgradesBlock.vue';
 import AchievementsBlock from '@/components/AchievementsBlock/AchievementsBlock.vue';
 import StatsBlock from '@/components/StatsBlock/StatsBlock.vue';
+import ShopBlock from '@/components/ShopBlock/ShopBlock.vue';
 import StateBar from '@/components/StateBar.vue';
 import TheNav from '@/components/TheNav.vue';
 import MonsterBlock from '@/components/MonsterBlock/MonsterBlock.vue';
@@ -54,7 +63,6 @@ import {
   upgrades,
 } from '@/shared/initialState/initialAppState';
 import { filterAchievementsByProperty } from '@/shared/functions/achievements';
-import ShopBlock from '@/components/ShopBlock/ShopBlock';
 
 export default {
   name: 'MainLayout',
@@ -168,6 +176,7 @@ export default {
     },
     killMonster(isBoss) {
       this.enrollGold(calcGoldForKilling(this.current.monsterIndex, isBoss));
+      this.rollForSapphire(isBoss);
       this.nextMonster();
       if (isBoss) {
         this.total.kills.bosses++;
@@ -204,6 +213,18 @@ export default {
     },
     resetUncheckedAchievements() {
       this.uncheckedAchievements = 0;
+    },
+    rollForSapphire(isBoss) {
+      if (isBoss) {
+        if (Math.random() < 0.5) {
+          this.current.inactiveSapphires++;
+          this.total.sapphires++;
+        }
+      }
+      if (Math.random() < 0.01) {
+        this.current.inactiveSapphires++;
+        this.total.sapphires++;
+      }
     },
   },
 };

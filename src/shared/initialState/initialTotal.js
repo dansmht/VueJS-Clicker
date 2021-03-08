@@ -4,6 +4,7 @@ export const initialTotal = {
   damage: 0,
   purchasedLevels: 0,
   receivedAchievements: 0,
+  sapphires: 0,
   kills: {
     monsters: 0,
     bosses: 0,
