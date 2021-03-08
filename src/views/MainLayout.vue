@@ -69,6 +69,7 @@ import {
 import { filterAchievementsByProperty } from '@/shared/functions/achievements';
 import { convertMinutesToMs, timersNames } from '@/shared/functions/timers';
 import { closeMultiTabListener } from '@/shared/functions/multitabs';
+import AchievementToast from '@/components/AchievementsBlock/AchievementToast';
 
 export default {
   name: 'MainLayout',
@@ -211,6 +212,16 @@ export default {
       });
     },
     receiveAchievement(id) {
+      this.$toast({
+        component: AchievementToast,
+        props: { id },
+        listeners: {
+          click: () => {
+            this.changeActiveTab('Achievements');
+            this.resetUncheckedAchievements();
+          },
+        },
+      });
       this.total.receivedAchievements++;
       if (this.activeBlock !== 'Achievements') {
         this.uncheckedAchievements++;
@@ -256,8 +267,8 @@ export default {
         total: JSON.parse(JSON.stringify(total)),
         current: JSON.parse(JSON.stringify(current)),
         upgrades: JSON.parse(JSON.stringify(upgrades)),
-        achievements,
-        timers,
+        achievements: JSON.parse(JSON.stringify(achievements)),
+        timers: JSON.parse(JSON.stringify(timers)),
         activeBlock: 'Upgrades',
         uncheckedAchievements: 0,
       });
