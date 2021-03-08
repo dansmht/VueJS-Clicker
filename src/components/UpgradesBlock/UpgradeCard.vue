@@ -18,11 +18,11 @@
       </p>
       <div class="parameters">
         <p class="param level">
-          Уровень: {{ level }}
+          Level: {{ level }}
         </p>
         <p class="param cost">
           <span v-tooltip="formattedCost">
-            Стоимость: {{ abbreviatedCost }}
+            Cost: {{ abbreviatedCost }}
           </span>
         </p>
       </div>
