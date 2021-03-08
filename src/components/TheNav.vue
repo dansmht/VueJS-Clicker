@@ -35,7 +35,7 @@ export default {
   computed: {
     tabs: {
       get() {
-        return ['Upgrades', 'Achievements', 'Stats'];
+        return ['Upgrades', 'Achievements', 'Stats', 'Shop'];
       },
     },
   },

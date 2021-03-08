@@ -25,6 +25,7 @@
           :current="current"
           :total="total"
         />
+        <shop-block v-show="activeBlock === 'Shop'" />
         <monster-block
           :monster-index="current.monsterIndex"
           :damage="current.damage"
@@ -53,10 +54,12 @@ import {
   upgrades,
 } from '@/shared/initialState/initialAppState';
 import { filterAchievementsByProperty } from '@/shared/functions/achievements';
+import ShopBlock from '@/components/ShopBlock/ShopBlock';
 
 export default {
   name: 'MainLayout',
   components: {
+    ShopBlock,
     StatsBlock,
     AchievementsBlock,
     UpgradesBlock,
