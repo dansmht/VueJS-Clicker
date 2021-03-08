@@ -1,4 +1,21 @@
 .shop-block {
   @include working-area;
   @include scroll-bar;
+
+  .shop-list {
+    margin-right: 16px;
+
+    .reincarnate-button {
+      @include flex-center;
+      height: 40px;
+      background: var(--font-sub-color);
+      color: #454545;
+      margin-bottom: 20px;
+
+      &:hover {
+        background: var(--font-main-color);
+        color: var(--darkest-color);
+      }
+    }
+  }
 }
