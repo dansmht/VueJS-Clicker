@@ -37,6 +37,9 @@
           :reincarnation-timer="timers.reincarnation"
           @reincarnate="reincarnate"
         />
+        <settings-block
+          v-show="activeBlock === 'Settings'"
+        />
         <monster-block
           :monster-index="current.monsterIndex"
           :damage="current.damage"
@@ -57,6 +60,7 @@ import UpgradesBlock from '@/components/UpgradesBlock/UpgradesBlock.vue';
 import AchievementsBlock from '@/components/AchievementsBlock/AchievementsBlock.vue';
 import StatsBlock from '@/components/StatsBlock/StatsBlock.vue';
 import ShopBlock from '@/components/ShopBlock/ShopBlock.vue';
+import SettingsBlock from '@/components/SettingsBlock/SettingsBlock.vue';
 import StateBar from '@/components/StateBar.vue';
 import TheNav from '@/components/TheNav.vue';
 import MonsterBlock from '@/components/MonsterBlock/MonsterBlock.vue';
@@ -76,6 +80,7 @@ import { closeMultiTabListener } from '@/shared/functions/multitabs';
 export default {
   name: 'MainLayout',
   components: {
+    SettingsBlock,
     TheLoader,
     ShopBlock,
     StatsBlock,
