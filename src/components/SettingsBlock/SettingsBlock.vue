@@ -2,11 +2,7 @@
   <div class="settings-block">
     <div class="scroll-wrapper">
       Settings
-      <settings-audio-controls
-        :is-audio-paused="isAudioPaused"
-        @toggleAudio="toggleAudio"
-        @togglePlaying="togglePlaying"
-      />
+      <settings-audio-controls />
     </div>
   </div>
 </template>
@@ -17,19 +13,5 @@ import SettingsAudioControls from '@/components/SettingsBlock/SettingsAudioContr
 export default {
   name: 'SettingsBlock',
   components: { SettingsAudioControls },
-  props: {
-    isAudioPaused: {
-      type: Boolean,
-      required: true,
-    },
-  },
-  methods: {
-    toggleAudio(n) {
-      this.$emit('toggleAudio', n);
-    },
-    togglePlaying() {
-      this.$emit('togglePlaying');
-    },
-  },
 };
 </script>

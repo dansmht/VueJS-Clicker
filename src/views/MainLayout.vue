@@ -39,9 +39,6 @@
         />
         <settings-block
           v-show="activeBlock === 'Settings'"
-          :is-audio-paused="activeAudio.audio.paused"
-          @toggleAudio="toggleAudio"
-          @togglePlaying="togglePlaying"
         />
         <monster-block
           :monster-index="current.monsterIndex"
@@ -103,9 +100,7 @@ export default {
       timers,
       activeBlock: 'Upgrades',
       uncheckedAchievements: 0,
-      audioPlaying: false,
       loading: true,
-      activeAudio: audioArray[0],
     };
   },
   computed: {
@@ -144,9 +139,6 @@ export default {
     closeMultiTabListener();
   },
   async created() {
-    this.activeAudio.audio.volume = 0.1;
-    this.activeAudio.audio.loop = true;
-
     const data = localStorage.getItem('data');
     const hashedData = localStorage.getItem('secret');
 
@@ -320,27 +312,6 @@ export default {
       });
 
       this.saveDataToLocalStorage(dataToSave);
-    },
-    togglePlaying() {
-      if (this.activeAudio.audio.paused) {
-        this.activeAudio.audio.play();
-      } else {
-        this.activeAudio.audio.pause();
-      }
-    },
-    toggleAudio(n) {
-      this.activeAudio.audio.pause();
-      this.activeAudio.audio.currentTime = 0;
-
-      const idx = this.activeAudio.id + n;
-      if (idx >= audioArray.length) {
-        [this.activeAudio] = audioArray;
-      } else if (idx < 0) {
-        this.activeAudio = audioArray[audioArray.length - 1];
-      } else {
-        this.activeAudio = audioArray[idx];
-      }
-      this.activeAudio.audio.play();
     },
   },
 };

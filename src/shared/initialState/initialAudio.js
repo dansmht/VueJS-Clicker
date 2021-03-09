@@ -7,4 +7,8 @@ export const audioArray = [
     id: 1,
     audio: new Audio(require('../../assets/audio/audio_2.mp3')),
   },
+  {
+    id: 2,
+    audio: new Audio(require('../../assets/audio/audio_3.mp3')),
+  },
 ];

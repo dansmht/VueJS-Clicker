@@ -1,5 +1,9 @@
 <template>
-  <li v-on="$listeners">
+  <li
+    v-tooltip="tooltipText"
+    class="audio-control"
+    v-on="$listeners"
+  >
     <img
       :src="src"
       :alt="alt"
@@ -18,6 +22,10 @@ export default {
     alt: {
       type: String,
       required: true,
+    },
+    tooltipText: {
+      type: String,
+      default: null,
     },
   },
 };
