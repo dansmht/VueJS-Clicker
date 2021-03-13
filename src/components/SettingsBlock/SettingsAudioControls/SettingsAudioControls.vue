@@ -38,21 +38,18 @@
           @click="pause"
         >
           <svg
-            width="11"
+            width="25"
             height="26"
-            viewBox="0 0 11 26"
+            viewBox="0 0 25 26"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <rect
-              width="1"
-              height="26"
+            <path
+              d="M8 0H7V26H8V0Z"
               fill="#B0B0B0"
             />
-            <rect
-              x="10"
-              width="1"
-              height="26"
+            <path
+              d="M18 0H17V26H18V0Z"
               fill="#B0B0B0"
             />
           </svg>
@@ -103,6 +100,11 @@
         </div>
       </div>
       <div class="volume-controls">
+        <mute-button
+          :volume="volume"
+          :muted="muted"
+          @toggleMute="toggleMute"
+        />
         <input
           ref="volume"
           v-model.number="volume"
@@ -118,21 +120,33 @@
 </template>
 
 <script>
+import MuteButton from '@/components/SettingsBlock/SettingsAudioControls/MuteButton.vue';
 import { audioArray } from '@/shared/initialState/initialAppState';
 
 export default {
   name: 'SettingsAudioControls',
+  components: { MuteButton },
   data() {
     return {
       activeAudio: audioArray[0],
       isPlaying: false,
       volume: 10,
+      muted: false,
     };
   },
   watch: {
     volume(val) {
       this.activeAudio.audio.volume = val / 100;
-      this.$refs.volume.style.background = `-webkit-linear-gradient(left, #fafafa 0%, #fafafa ${val}%, #454545 ${val}%, #454545 100%)`;
+      if (!this.muted) {
+        this.paintLine();
+      }
+    },
+    muted(val) {
+      if (!val) {
+        this.paintLine();
+      } else {
+        this.$refs.volume.style.background = '#454545';
+      }
     },
   },
   created() {
@@ -140,9 +154,12 @@ export default {
     this.activeAudio.audio.loop = true;
   },
   mounted() {
-    this.$refs.volume.style.background = `-webkit-linear-gradient(left, #fafafa 0%, #fafafa ${this.volume}%, #454545 ${this.volume}%, #454545 100%)`;
+    this.paintLine();
   },
   methods: {
+    paintLine() {
+      this.$refs.volume.style.background = `-webkit-linear-gradient(left, #fafafa 0%, #fafafa ${this.volume}%, #454545 ${this.volume}%, #454545 100%)`;
+    },
     play() {
       this.activeAudio.audio.play();
       this.isPlaying = true;
@@ -164,6 +181,11 @@ export default {
         this.activeAudio = audioArray[idx];
       }
       this.play();
+    },
+    toggleMute() {
+      const newVal = !this.activeAudio.audio.muted;
+      this.activeAudio.audio.muted = newVal;
+      this.muted = newVal;
     },
   },
 };

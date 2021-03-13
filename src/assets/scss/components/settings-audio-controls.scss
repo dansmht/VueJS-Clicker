@@ -26,10 +26,12 @@
           margin-left: 10px;
         }
 
-        &:hover path,
-        &:hover rect {
-          stroke: var(--font-main-color);
-          fill: var(--font-main-color);
+        &:hover {
+          path,
+          rect {
+            stroke: var(--font-main-color);
+            fill: var(--font-main-color);
+          }
         }
 
         &:active {
@@ -44,6 +46,21 @@
     }
 
     .volume-controls {
+      display: flex;
+      align-items: center;
+
+      .mute-button {
+        margin-right: 10px;
+        cursor: pointer;
+
+        &:hover {
+          path,
+          rect {
+            stroke: var(--font-main-color);
+            fill: var(--font-main-color);
+          }
+        }
+      }
 
       &:hover {
         .volume-range[type=range]::-webkit-slider-thumb {
