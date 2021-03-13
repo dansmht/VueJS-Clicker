@@ -1,4 +1,11 @@
 .settings-block {
   @include working-area;
   @include scroll-bar;
+
+  .settings {
+    height: 100%;
+    margin-right: 16px;
+    padding: 20px;
+    background: var(--darker-color);
+  }
 }

@@ -1,8 +1,10 @@
 <template>
   <div class="settings-block">
     <div class="scroll-wrapper">
-      Settings
-      <settings-audio-controls />
+      <div class="settings">
+        <div>Settings</div>
+        <settings-audio-controls />
+      </div>
     </div>
   </div>
 </template>

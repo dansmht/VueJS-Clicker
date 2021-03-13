@@ -1,53 +1,127 @@
 <template>
   <div class="settings-audio-controls">
-    <h4>Music</h4>
-    <ul class="audio-controls-list">
-      <audio-control
-        :src="require('../../../assets/images/audio/rewind.png')"
-        alt="<<"
-        tooltip-text="Previous"
-        @click="skipAudio(-1)"
-      />
-      <audio-control
-        v-if="isPlaying"
-        :src="require('../../../assets/images/audio/pause.png')"
-        alt="||"
-        tooltip-text="Pause"
-        @click="pause"
-      />
-      <audio-control
-        v-else
-        :src="require('../../../assets/images/audio/play.png')"
-        alt="|>"
-        tooltip-text="Play"
-        @click="play"
-      />
-      <audio-control
-        :src="require('../../../assets/images/audio/fast-forward.png')"
-        alt=">>"
-        tooltip-text="Next"
-        @click="skipAudio(1)"
-      />
-      <li>
+    <div class="audio-title">
+      Music
+    </div>
+    <div class="audio-controls">
+      <div class="main-controls">
+        <div
+          v-tooltip="'Previous'"
+          class="audio-control"
+          @click="skipAudio(-1)"
+        >
+          <svg
+            width="21"
+            height="22"
+            viewBox="0 0 21 22"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1 11L15.8779 1.95811L15.8779 20.0419L1 11Z"
+              fill="#B0B0B0"
+            />
+            <rect
+              x="1.56641"
+              y="19.3525"
+              width="1.04407"
+              height="16.7051"
+              transform="rotate(-180 1.56641 19.3525)"
+              fill="#B0B0B0"
+            />
+          </svg>
+        </div>
+        <div
+          v-if="isPlaying"
+          v-tooltip="'Pause'"
+          class="audio-control"
+          @click="pause"
+        >
+          <svg
+            width="11"
+            height="26"
+            viewBox="0 0 11 26"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              width="1"
+              height="26"
+              fill="#B0B0B0"
+            />
+            <rect
+              x="10"
+              width="1"
+              height="26"
+              fill="#B0B0B0"
+            />
+          </svg>
+        </div>
+        <div
+          v-else
+          v-tooltip="'Play'"
+          class="audio-control"
+          @click="play"
+        >
+          <svg
+            width="25"
+            height="26"
+            viewBox="0 0 25 26"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M25 13L6.475 24.2583L6.475 1.74167L25 13Z"
+              fill="#B0B0B0"
+            />
+          </svg>
+        </div>
+        <div
+          v-tooltip="'Next'"
+          class="audio-control"
+          @click="skipAudio(1)"
+        >
+          <svg
+            width="21"
+            height="22"
+            viewBox="0 0 21 22"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20.3003 11L5.42235 20.0419L5.42235 1.95811L20.3003 11Z"
+              fill="#B0B0B0"
+            />
+            <rect
+              x="19.7339"
+              y="2.64746"
+              width="1.04407"
+              height="16.7051"
+              fill="#B0B0B0"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="volume-controls">
         <input
-          v-model="volume"
+          ref="volume"
+          v-model.number="volume"
+          class="volume-range"
           type="range"
           min="0"
           max="100"
           step="1"
         >
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import AudioControl from '@/components/SettingsBlock/SettingsAudioControls/AudioControl.vue';
-import { audioArray } from '@/shared/initialState/initialAudio';
+import { audioArray } from '@/shared/initialState/initialAppState';
 
 export default {
   name: 'SettingsAudioControls',
-  components: { AudioControl },
   data() {
     return {
       activeAudio: audioArray[0],
@@ -58,11 +132,15 @@ export default {
   watch: {
     volume(val) {
       this.activeAudio.audio.volume = val / 100;
+      this.$refs.volume.style.background = `-webkit-linear-gradient(left, #fafafa 0%, #fafafa ${val}%, #454545 ${val}%, #454545 100%)`;
     },
   },
   created() {
     this.activeAudio.audio.volume = this.volume / 100;
     this.activeAudio.audio.loop = true;
+  },
+  mounted() {
+    this.$refs.volume.style.background = `-webkit-linear-gradient(left, #fafafa 0%, #fafafa ${this.volume}%, #454545 ${this.volume}%, #454545 100%)`;
   },
   methods: {
     play() {
