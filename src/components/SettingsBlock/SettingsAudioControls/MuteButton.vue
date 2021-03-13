@@ -18,7 +18,7 @@
         d="M5 8L18 0V26L5 18V8Z"
         fill="#B0B0B0"
       />
-      <template v-if="status === 0">
+      <template v-if="volume === 0">
         <rect
           x="37.9331"
           y="19.0667"
@@ -36,7 +36,7 @@
           fill="#B0B0B0"
         />
       </template>
-      <template v-if="status === 1 || status === 2 || status === 3">
+      <template v-if="volume > 0">
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
@@ -48,7 +48,7 @@
           fill="#B0B0B0"
         />
       </template>
-      <template v-if="status === 2 || status === 3">
+      <template v-if="volume >= 33">
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
@@ -60,7 +60,7 @@
           fill="#B0B0B0"
         />
       </template>
-      <template v-if="status === 3">
+      <template v-if="volume >= 66">
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
@@ -87,20 +87,6 @@ export default {
     muted: {
       type: Boolean,
       required: true,
-    },
-  },
-  computed: {
-    status() {
-      if (this.volume === 0 || this.muted) {
-        return 0;
-      }
-      if (this.volume <= 33) {
-        return 1;
-      }
-      if (this.volume <= 66) {
-        return 2;
-      }
-      return 3;
     },
   },
   methods: {
