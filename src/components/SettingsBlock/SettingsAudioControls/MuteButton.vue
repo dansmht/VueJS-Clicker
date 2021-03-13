@@ -18,7 +18,7 @@
         d="M5 8L18 0V26L5 18V8Z"
         fill="#B0B0B0"
       />
-      <template v-if="volume === 0">
+      <template v-if="volume === 0 || muted">
         <rect
           x="37.9331"
           y="19.0667"
@@ -36,7 +36,7 @@
           fill="#B0B0B0"
         />
       </template>
-      <template v-if="volume > 0">
+      <template v-if="volume > 0 && !muted">
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
@@ -48,7 +48,7 @@
           fill="#B0B0B0"
         />
       </template>
-      <template v-if="volume >= 33">
+      <template v-if="volume >= 33 && !muted">
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
@@ -60,7 +60,7 @@
           fill="#B0B0B0"
         />
       </template>
-      <template v-if="volume >= 66">
+      <template v-if="volume >= 66 && !muted">
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
