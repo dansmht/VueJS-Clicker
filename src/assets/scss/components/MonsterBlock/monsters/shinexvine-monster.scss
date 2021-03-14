@@ -1,0 +1,18 @@
+.shinexvine {
+  .heart {
+    transform-origin: 49% 42%;
+    animation: shinexvine-rotate 20s ease-in-out infinite;
+  }
+  .main-shard {
+    transform-origin: 49% 83%;
+    animation: shinexvine-rotate 5s linear infinite reverse;
+  }
+  @keyframes shinexvine-rotate {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
