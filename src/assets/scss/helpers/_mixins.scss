@@ -36,3 +36,83 @@
     margin-right: 16px;
   }
 }
+
+@mixin card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--upgrade-card-height);
+  margin: 10px 0;
+  background: var(--darker-color);
+
+  .img {
+    @include flex-center;
+    width: var(--upgrade-card-height);
+    height: var(--upgrade-card-height);
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+@mixin description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(var(--upgrade-card-height) - 20px);
+  margin-left: 18px;
+  flex-grow: 1;
+
+  .title {
+    font-weight: normal;
+    line-height: 18px;
+    color: var(--font-main-color);
+  }
+
+  .text {
+    color: var(--font-sub-color);
+    font-size: var(--smallest-font);
+    line-height: 14px;
+
+    span {
+      color: var(--font-sub-color);
+    }
+  }
+
+  .parameters {
+    font-size: var(--smallest-font);
+    line-height: 14px;
+    display: flex;
+
+    .param {
+      color: var(--font-sub-color);
+      width: calc((var(--options-block-width) - 90px - 18px - 70px - 20px) / 2);
+
+      span {
+        color: var(--font-sub-color);
+      }
+    }
+  }
+}
+
+@mixin icon {
+  .icon {
+    margin: 0 20px;
+    width: 30px;
+    height: 30px;
+
+    &.scalable:hover {
+      transform: scale(1.25);
+    }
+  }
+}
+
+@mixin imp-card {
+  @include card;
+  @include icon;
+
+  .description {
+    @include description;
+  }
+}

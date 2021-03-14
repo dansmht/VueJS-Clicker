@@ -9,7 +9,12 @@
       :current-health-points="currentHealthPoints"
       :max-health-points="maxHealthPoints"
     />
-    <skills-area />
+    <skills-area
+      :skills="skills"
+      :timers="timers"
+      @resetTimer="resetTimer"
+      @hitMonster="hitMonster(true)"
+    />
     {{ monsterIndex }}
   </div>
 </template>
@@ -35,6 +40,14 @@ export default {
     },
     damagePerSec: {
       type: Number,
+      required: true,
+    },
+    skills: {
+      type: Array,
+      required: true,
+    },
+    timers: {
+      type: Object,
       required: true,
     },
   },
@@ -145,6 +158,9 @@ export default {
     setMonster(arr, idx) {
       this.componentName = arr[idx].componentName;
       this.name = arr[idx].name;
+    },
+    resetTimer(timer, cooldown) {
+      this.$emit('resetTimer', timer, cooldown);
     },
   },
 };

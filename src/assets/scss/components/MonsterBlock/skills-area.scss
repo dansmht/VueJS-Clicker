@@ -12,9 +12,30 @@
     justify-content: space-between;
 
     .skills-list-item {
+      @include flex-center;
       width: 64px;
       height: 64px;
       background: #454545;
+      position: relative;
+
+      .time-left {
+        @include flex-center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.666);
+        z-index: 1;
+      }
+
+      &.ready {
+        cursor: pointer;
+      }
+
+      img {
+        transform: scale(0.6);
+      }
     }
   }
 }

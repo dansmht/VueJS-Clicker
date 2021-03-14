@@ -23,5 +23,9 @@
         cursor: pointer;
       }
     }
+
+    .improvement-card {
+      @include imp-card;
+    }
   }
 }

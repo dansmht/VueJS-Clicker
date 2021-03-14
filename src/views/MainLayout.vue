@@ -32,10 +32,12 @@
         />
         <shop-block
           v-show="activeBlock === 'Shop'"
+          :skills="skills"
           :sapphires="current.sapphires"
           :inactive-sapphires="current.inactiveSapphires"
           :reincarnation-timer="timers.reincarnation"
           @reincarnate="reincarnate"
+          @buyImprovement="buyImprovement"
         />
         <settings-block
           v-show="activeBlock === 'Settings'"
@@ -44,9 +46,12 @@
           :monster-index="current.monsterIndex"
           :damage="current.damage"
           :damage-per-sec="current.damagePerSec"
+          :skills="skills"
+          :timers="timers"
           @enrollGold="enrollGold"
           @hitMonster="hitMonster"
           @killMonster="killMonster"
+          @resetTimer="resetTimer"
         />
       </div>
     </main>
@@ -68,8 +73,8 @@ import AchievementToast from '@/components/AchievementsBlock/AchievementToast.vu
 import { calcGoldForKilling } from '@/shared/functions/formulas';
 import {
   achievements,
-  audioArray,
   current,
+  skills,
   timers,
   total,
   upgrades,
@@ -97,6 +102,7 @@ export default {
       current: JSON.parse(JSON.stringify(current)),
       upgrades: JSON.parse(JSON.stringify(upgrades)),
       achievements,
+      skills,
       timers,
       activeBlock: 'Upgrades',
       uncheckedAchievements: 0,
@@ -208,6 +214,13 @@ export default {
     unlockUpgrade(id) {
       const upgrade = this.upgrades.find((u) => u.id === id);
       upgrade.show = true;
+    },
+    buyImprovement({ id, type, cost }) {
+      if (type === 'ability') {
+        const improvement = this.skills.find((u) => u.id === id);
+        improvement.received = true;
+      }
+      this.current.sapphires -= cost;
     },
     changeActiveTab(tab) {
       this.activeBlock = tab;
