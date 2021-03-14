@@ -163,8 +163,6 @@ export default {
     setInterval(this.saveGame, 5000);
   },
   mounted() {
-    this.startTimer(timersNames.reincarnation);
-
     setTimeout(() => {
       this.loading = false;
     }, 1800);
@@ -312,6 +310,12 @@ export default {
       const dataToSync = JSON.parse(localStorage.getItem('data'));
 
       Object.assign(this, dataToSync);
+
+      Object.keys(this.timers).forEach((key) => {
+        if (this.timers[key] > 0) {
+          this.startTimer(key);
+        }
+      });
     },
     saveGame() {
       const dataToSave = JSON.stringify({
