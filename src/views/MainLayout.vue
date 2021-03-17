@@ -279,6 +279,13 @@ export default {
       this.timers[timer] = convertMinutesToMs(minutes);
       this.startTimer(timer);
     },
+    startAllTimers() {
+      Object.keys(this.timers).forEach((key) => {
+        if (this.timers[key] > 0) {
+          this.startTimer(key);
+        }
+      });
+    },
     reincarnate() {
       const tempSapphires = this.current.sapphires + this.current.inactiveSapphires;
       this.resetTimer(timersNames.reincarnation, 5);
@@ -311,11 +318,7 @@ export default {
 
       Object.assign(this, dataToSync);
 
-      Object.keys(this.timers).forEach((key) => {
-        if (this.timers[key] > 0) {
-          this.startTimer(key);
-        }
-      });
+      this.startAllTimers();
     },
     saveGame() {
       const dataToSave = JSON.stringify({

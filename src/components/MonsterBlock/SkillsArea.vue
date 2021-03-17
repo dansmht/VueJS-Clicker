@@ -51,9 +51,9 @@ export default {
   methods: {
     onClickHandler(skill) {
       if (skill.received && this.getTimer(skill.id) <= 0) {
+        this.$emit('resetTimer', `skill${skill.id}`, skill.cooldownTimeInMinutes);
         switch (skill.id) {
           case 1:
-            this.$emit('resetTimer', 'skill1', skill.cooldownTimeInMinutes);
             this.interval(() => this.$emit('hitMonster'), skill.duration, 200);
             break;
           default:
