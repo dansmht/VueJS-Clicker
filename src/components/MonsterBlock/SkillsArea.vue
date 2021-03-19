@@ -47,6 +47,10 @@ export default {
       type: Object,
       required: true,
     },
+    damagePerSec: {
+      type: Number,
+      required: true,
+    },
   },
   methods: {
     onClickHandler(skill) {
@@ -55,6 +59,15 @@ export default {
         switch (skill.id) {
           case 1:
             this.interval(() => this.$emit('hitMonster'), skill.duration, 200);
+            break;
+          case 4:
+            this.$emit('enrollGold', this.damagePerSec * 10);
+            break;
+          case 7:
+            // TODO: during 30 sec every hit increase dps by 1%
+            break;
+          case 9:
+            this.$emit('executeMonster');
             break;
           default:
             break;

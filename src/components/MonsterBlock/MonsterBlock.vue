@@ -12,8 +12,11 @@
     <skills-area
       :skills="skills"
       :timers="timers"
+      :damage-per-sec="damagePerSec"
       @resetTimer="resetTimer"
       @hitMonster="hitMonster(true)"
+      @enrollGold="enrollGold"
+      @executeMonster="executeMonster"
     />
     {{ monsterIndex }}
   </div>
@@ -138,6 +141,21 @@ export default {
         this.$emit('hitMonster', realDamage, isByClick);
       }
     },
+    executeMonster() {
+      let realDamage;
+      if (this.isBoss) {
+        if (this.currentHealthPoints * 2 >= this.maxHealthPoints) {
+          realDamage = Math.floor(this.maxHealthPoints / 2);
+        } else {
+          realDamage = this.currentHealthPoints;
+        }
+      } else {
+        realDamage = this.currentHealthPoints;
+      }
+      console.log('this.currentHealthPoints -= realDamage;', this.currentHealthPoints, realDamage);
+      this.currentHealthPoints -= realDamage;
+      this.$emit('hitMonster', realDamage, false);
+    },
     calcMonsterStats() {
       const hp = calcMonsterHP(this.monsterIndex, this.isBoss);
       this.maxHealthPoints = hp;
@@ -161,6 +179,9 @@ export default {
     },
     resetTimer(timer, cooldown) {
       this.$emit('resetTimer', timer, cooldown);
+    },
+    enrollGold(gold) {
+      this.$emit('enrollGold', gold);
     },
   },
 };

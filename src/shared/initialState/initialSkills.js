@@ -15,7 +15,7 @@ export const initialSkills = [{
   duration: 0,
   cost: 2,
   cooldownTimeInMinutes: 2,
-  received: false,
+  received: true,
 }, {
   id: 7,
   name: 'Berserk',
@@ -31,5 +31,5 @@ export const initialSkills = [{
   duration: 0,
   cost: 4,
   cooldownTimeInMinutes: 4,
-  received: false,
+  received: true,
 }];
