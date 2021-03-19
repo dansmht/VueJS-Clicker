@@ -1,6 +1,5 @@
 <template>
   <div class="vue-js-clicker">
-    <the-loader v-if="loading" />
     <state-bar
       :gold="current.gold"
       :sapphires="current.sapphires"
@@ -60,7 +59,6 @@
 
 <script>
 import bcrypt from 'bcryptjs';
-import TheLoader from '@/components/TheLoader.vue';
 import UpgradesBlock from '@/components/UpgradesBlock/UpgradesBlock.vue';
 import AchievementsBlock from '@/components/AchievementsBlock/AchievementsBlock.vue';
 import StatsBlock from '@/components/StatsBlock/StatsBlock.vue';
@@ -87,7 +85,6 @@ export default {
   name: 'MainLayout',
   components: {
     SettingsBlock,
-    TheLoader,
     ShopBlock,
     StatsBlock,
     AchievementsBlock,
@@ -106,7 +103,6 @@ export default {
       timers,
       activeBlock: 'Upgrades',
       uncheckedAchievements: 0,
-      loading: true,
     };
   },
   computed: {
@@ -163,9 +159,11 @@ export default {
     setInterval(this.saveGame, 5000);
   },
   mounted() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 1800);
+    document.onreadystatechange = () => {
+      if (document.readyState === 'complete') {
+        this.$emit('loaded');
+      }
+    };
   },
   methods: {
     nextMonster() {
