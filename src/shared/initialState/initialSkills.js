@@ -7,7 +7,7 @@ export const initialSkills = [{
   duration: convertMinutesToMs(0.5),
   cost: 1,
   cooldownTimeInMinutes: 1,
-  received: true,
+  received: false,
 }, {
   id: 4,
   name: 'Greed',
@@ -15,7 +15,7 @@ export const initialSkills = [{
   duration: 0,
   cost: 2,
   cooldownTimeInMinutes: 2,
-  received: true,
+  received: false,
 }, {
   id: 7,
   name: 'Berserk',
@@ -23,7 +23,7 @@ export const initialSkills = [{
   duration: convertMinutesToMs(0.5),
   cost: 3,
   cooldownTimeInMinutes: 3,
-  received: true,
+  received: false,
 }, {
   id: 9,
   name: 'Execution',
@@ -31,5 +31,5 @@ export const initialSkills = [{
   duration: 0,
   cost: 4,
   cooldownTimeInMinutes: 4,
-  received: true,
+  received: false,
 }];
