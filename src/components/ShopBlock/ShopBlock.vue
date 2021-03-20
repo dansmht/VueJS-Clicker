@@ -30,9 +30,9 @@
               {{ imp.description }}
               <span
                 v-if="imp.duration"
-                v-tooltip="'05:00'"
+                v-tooltip="getDuration(imp.duration)"
                 style="white-space: nowrap"
-              >(duration: 05:00)</span>
+              >(duration: {{ getDuration(imp.duration) }})</span>
             </p>
             <div class="parameters">
               <p class="param level">
@@ -111,6 +111,9 @@ export default {
         ? getComputedStyle(document.documentElement)
           .getPropertyValue('--font-main-color')
         : '#454545';
+    },
+    getDuration(ms) {
+      return msToTime(ms);
     },
   },
 };
