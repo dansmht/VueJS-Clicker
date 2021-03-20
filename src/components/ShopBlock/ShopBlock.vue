@@ -49,7 +49,7 @@
             :class="{scalable: imp.cost <= sapphires}"
             @click="onClickHandler(imp.cost, imp.id, imp.type)"
           >
-            <icon-plus :color="iconColor" />
+            <icon-plus :color="getIconColor(imp.cost)" />
           </div>
         </li>
       </ul>
@@ -89,12 +89,6 @@ export default {
     reincarnationTimeLeft() {
       return msToTime(this.reincarnationTimer);
     },
-    iconColor() {
-      return this.isAvailable
-        ? getComputedStyle(document.documentElement)
-          .getPropertyValue('--font-main-color')
-        : '#454545';
-    },
   },
   methods: {
     formatArray(array, type) {
@@ -111,6 +105,12 @@ export default {
       if (this.sapphires >= cost) {
         this.$emit('buyImprovement', { id, type, cost });
       }
+    },
+    getIconColor(cost) {
+      return cost <= this.sapphires
+        ? getComputedStyle(document.documentElement)
+          .getPropertyValue('--font-main-color')
+        : '#454545';
     },
   },
 };
