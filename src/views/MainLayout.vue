@@ -83,6 +83,23 @@ import { filterAchievementsByProperty } from '@/shared/functions/achievements';
 import { convertMinutesToMs, timersNames } from '@/shared/functions/timers';
 import { closeMultiTabListener } from '@/shared/functions/multitabs';
 
+const initialState = {
+  total: JSON.parse(JSON.stringify(total)),
+  current: JSON.parse(JSON.stringify(current)),
+  upgrades: JSON.parse(JSON.stringify(upgrades)),
+  achievements,
+  skills: JSON.parse(JSON.stringify(skills)),
+  timers,
+  activeBlock: 'Upgrades',
+  uncheckedAchievements: 0,
+  berserkMode: false,
+  multipliers: {
+    dps: {
+      berserk: 1,
+    },
+  },
+};
+
 export default {
   name: 'MainLayout',
   components: {
@@ -96,22 +113,7 @@ export default {
     StateBar,
   },
   data() {
-    return {
-      total: JSON.parse(JSON.stringify(total)),
-      current: JSON.parse(JSON.stringify(current)),
-      upgrades: JSON.parse(JSON.stringify(upgrades)),
-      achievements,
-      skills: JSON.parse(JSON.stringify(skills)),
-      timers,
-      activeBlock: 'Upgrades',
-      uncheckedAchievements: 0,
-      berserkMode: false,
-      multipliers: {
-        dps: {
-          berserk: 1,
-        },
-      },
-    };
+    return initialState;
   },
   computed: {
     realDPS() {
@@ -336,7 +338,7 @@ export default {
     syncWithLocalStorage() {
       const dataToSync = JSON.parse(localStorage.getItem('data'));
 
-      Object.assign(this, dataToSync);
+      Object.assign(this, initialState, dataToSync);
 
       this.startAllTimers();
     },
