@@ -103,7 +103,7 @@ export default {
         .map((skill) => ({ type, ...skill }));
     },
     reincarnate() {
-      if (this.reincarnationTimer <= 0 && window.confirm('Do you want to reincarnate?')) {
+      if (this.reincarnationTimer <= 0 && window.confirm('Do you want to reincarnate? You will lose all upgrades!')) {
         this.$emit('reincarnate');
       }
     },
