@@ -101,7 +101,7 @@ export default {
       current: JSON.parse(JSON.stringify(current)),
       upgrades: JSON.parse(JSON.stringify(upgrades)),
       achievements,
-      skills,
+      skills: JSON.parse(JSON.stringify(skills)),
       timers,
       activeBlock: 'Upgrades',
       uncheckedAchievements: 0,
@@ -320,6 +320,7 @@ export default {
         upgrades: JSON.parse(JSON.stringify(upgrades)),
         achievements: JSON.parse(JSON.stringify(achievements)),
         timers: JSON.parse(JSON.stringify(timers)),
+        skills: JSON.parse(JSON.stringify(skills)),
         activeBlock: 'Upgrades',
         uncheckedAchievements: 0,
       });
@@ -346,6 +347,7 @@ export default {
         upgrades: this.upgrades,
         achievements: this.achievements,
         timers: this.timers,
+        skills: this.skills,
         activeBlock: this.activeBlock,
         uncheckedAchievements: this.uncheckedAchievements,
       });
