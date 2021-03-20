@@ -23,7 +23,7 @@ export const initialSkills = [{
   duration: convertMinutesToMs(0.5),
   cost: 3,
   cooldownTimeInMinutes: 3,
-  received: false,
+  received: true,
 }, {
   id: 9,
   name: 'Execution',

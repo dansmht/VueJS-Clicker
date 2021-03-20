@@ -38,6 +38,10 @@ export default {
       type: Object,
       required: true,
     },
+    realDps: {
+      type: Number,
+      required: true,
+    },
   },
   computed: {
     damageList() {
@@ -47,6 +51,9 @@ export default {
       }, {
         title: 'Damage Per Second:',
         value: this.current.damagePerSec,
+      }, {
+        title: 'Real Damage Per Second:',
+        value: this.realDps,
       }];
     },
     restStatsList() {

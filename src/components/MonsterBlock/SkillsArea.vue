@@ -64,7 +64,8 @@ export default {
             this.$emit('enrollGold', this.damagePerSec * 10);
             break;
           case 7:
-            // TODO: during 30 sec every hit increase dps by 1%
+            this.$emit('toggleBerserkMode');
+            this.interval(() => this.$emit('toggleBerserkMode'), skill.duration, skill.duration);
             break;
           case 9:
             this.$emit('executeMonster');

@@ -28,6 +28,7 @@
           v-show="activeBlock === 'Stats'"
           :current="current"
           :total="total"
+          :real-dps="realDPS"
         />
         <shop-block
           v-show="activeBlock === 'Shop'"
@@ -44,13 +45,14 @@
         <monster-block
           :monster-index="current.monsterIndex"
           :damage="current.damage"
-          :damage-per-sec="current.damagePerSec"
+          :damage-per-sec="realDPS"
           :skills="skills"
           :timers="timers"
           @enrollGold="enrollGold"
           @hitMonster="hitMonster"
           @killMonster="killMonster"
           @resetTimer="resetTimer"
+          @toggleBerserkMode="toggleBerserkMode"
         />
       </div>
     </main>
@@ -103,9 +105,19 @@ export default {
       timers,
       activeBlock: 'Upgrades',
       uncheckedAchievements: 0,
+      berserkMode: false,
+      multipliers: {
+        dps: {
+          berserk: 1,
+        },
+      },
     };
   },
   computed: {
+    realDPS() {
+      const multiplier = Object.values(this.multipliers.dps).reduce((acc, cur) => acc * cur, 1);
+      return Math.floor(this.current.damagePerSec * multiplier);
+    },
     upgradesToShow() {
       return this.upgrades.filter((upgrade) => upgrade.show);
     },
@@ -195,6 +207,9 @@ export default {
     hitMonster(damage, isByClick) {
       if (isByClick) {
         this.total.clicks++;
+        if (this.berserkMode) {
+          this.multipliers.dps.berserk += 0.01;
+        }
       }
       this.total.damage += damage;
     },
@@ -233,6 +248,12 @@ export default {
           this.receiveAchievement(achievement.id);
         }
       });
+    },
+    toggleBerserkMode() {
+      this.berserkMode = !this.berserkMode;
+      if (!this.berserkMode) {
+        this.multipliers.dps.berserk = 1;
+      }
     },
     receiveAchievement(id) {
       this.$toast({

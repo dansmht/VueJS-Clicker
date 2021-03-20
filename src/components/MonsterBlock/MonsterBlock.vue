@@ -16,6 +16,7 @@
       @resetTimer="resetTimer"
       @hitMonster="hitMonster(true)"
       @enrollGold="enrollGold"
+      @toggleBerserkMode="$emit('toggleBerserkMode')"
       @executeMonster="executeMonster"
     />
     {{ monsterIndex }}
