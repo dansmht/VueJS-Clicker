@@ -41,7 +41,9 @@ export default {
   },
   computed: {
     sortedAchievements() {
-      return [...this.achievements].sort((a, b) => (a.received > b.received ? -1 : 1));
+      return [...this.achievements]
+        .sort((a, b) => (a.received > b.received ? -1 : 1))
+        .sort((a, b) => (a.hidden > b.hidden ? 1 : -1));
     },
   },
 };
