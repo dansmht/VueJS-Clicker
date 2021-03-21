@@ -9,7 +9,7 @@ const dealedDamage = 'total.damage';
 
 export const initialAchievements = [{
   id: 1,
-  name: 'Hunter',
+  name: 'First blood',
   description: 'Kill 10 monsters',
   received: false,
   hidden: false,
@@ -25,7 +25,7 @@ export const initialAchievements = [{
   value: 1000,
 }, {
   id: 3,
-  name: 'Slayer',
+  name: 'Hunter',
   description: 'Kill 10K monsters',
   received: false,
   hidden: false,
@@ -33,7 +33,7 @@ export const initialAchievements = [{
   value: 10000,
 }, {
   id: 4,
-  name: 'Slaughterer',
+  name: 'Exterminator',
   description: 'Kill 100K monsters',
   received: false,
   hidden: false,
@@ -41,7 +41,7 @@ export const initialAchievements = [{
   value: 100000,
 }, {
   id: 5,
-  name: 'Homicide',
+  name: 'This is madness',
   description: 'Kill 1 boss',
   received: false,
   hidden: false,
@@ -57,7 +57,7 @@ export const initialAchievements = [{
   value: 10,
 }, {
   id: 7,
-  name: 'Murderer',
+  name: 'Fearless',
   description: 'Kill 50 bosses',
   received: false,
   hidden: false,
@@ -65,7 +65,7 @@ export const initialAchievements = [{
   value: 50,
 }, {
   id: 8,
-  name: 'Assassin',
+  name: 'Hero',
   description: 'Kill 100 bosses',
   received: false,
   hidden: false,
@@ -73,7 +73,7 @@ export const initialAchievements = [{
   value: 100,
 }, {
   id: 9,
-  name: 'come up with',
+  name: 'Easy peasy',
   description: 'Click 100 times',
   received: false,
   hidden: false,
@@ -81,7 +81,7 @@ export const initialAchievements = [{
   value: 100,
 }, {
   id: 10,
-  name: 'come up with',
+  name: 'Iron fist',
   description: 'Click 1K times',
   received: false,
   hidden: false,
@@ -89,7 +89,7 @@ export const initialAchievements = [{
   value: 1000,
 }, {
   id: 11,
-  name: 'come up with',
+  name: 'Unstoppable',
   description: 'Click 10K times',
   received: false,
   hidden: false,
@@ -97,7 +97,7 @@ export const initialAchievements = [{
   value: 10000,
 }, {
   id: 12,
-  name: 'come up with',
+  name: 'Psychopath',
   description: 'Click 100K times',
   received: false,
   hidden: false,
@@ -105,7 +105,7 @@ export const initialAchievements = [{
   value: 100000,
 }, {
   id: 13,
-  name: 'come up with',
+  name: 'Elder scrolls',
   description: 'Buy 100 upgrades',
   received: false,
   hidden: false,
@@ -113,7 +113,7 @@ export const initialAchievements = [{
   value: 100,
 }, {
   id: 14,
-  name: 'come up with',
+  name: 'Сollector',
   description: 'Buy 500 upgrades',
   received: false,
   hidden: false,
@@ -121,7 +121,7 @@ export const initialAchievements = [{
   value: 500,
 }, {
   id: 15,
-  name: 'come up with',
+  name: 'Librarian',
   description: 'Buy 2.5K upgrades',
   received: false,
   hidden: false,
@@ -129,7 +129,7 @@ export const initialAchievements = [{
   value: 2500,
 }, {
   id: 16,
-  name: 'come up with',
+  name: 'Sectarian',
   description: 'Buy 10K upgrades',
   received: false,
   hidden: false,
@@ -137,7 +137,7 @@ export const initialAchievements = [{
   value: 10000,
 }, {
   id: 17,
-  name: 'come up with',
+  name: 'Сultist',
   description: 'Kill 666 monsters',
   received: false,
   hidden: true,
@@ -145,7 +145,7 @@ export const initialAchievements = [{
   value: 666,
 }, {
   id: 18,
-  name: 'come up with',
+  name: 'Believer',
   description: 'Kill 666 bosses',
   received: false,
   hidden: true,
@@ -153,7 +153,7 @@ export const initialAchievements = [{
   value: 666,
 }, {
   id: 19,
-  name: 'come up with',
+  name: 'Archcultist',
   description: 'Click 666 times',
   received: false,
   hidden: true,
@@ -161,7 +161,7 @@ export const initialAchievements = [{
   value: 666,
 }, {
   id: 20,
-  name: 'come up with',
+  name: 'Adept ',
   description: 'Buy 666 upgrades',
   received: false,
   hidden: true,
