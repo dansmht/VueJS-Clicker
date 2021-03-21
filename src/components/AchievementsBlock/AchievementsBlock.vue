@@ -17,7 +17,7 @@
       <div>Achievements:</div>
       <div>
         {{ `${receivedAchievements}/${achievements.length}
-      (${+(receivedAchievements / achievements.length * 100)}%)` }}
+      (${Math.floor(receivedAchievements / achievements.length * 100)}%)` }}
       </div>
     </div>
   </div>
@@ -42,8 +42,7 @@ export default {
   computed: {
     sortedAchievements() {
       return [...this.achievements]
-        .sort((a, b) => (a.received > b.received ? -1 : 1))
-        .sort((a, b) => (a.hidden > b.hidden ? 1 : -1));
+        .sort((a, b) => ((a.received > b.received) || (a.hidden < b.hidden) ? -1 : 1));
     },
   },
 };
