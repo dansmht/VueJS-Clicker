@@ -5,6 +5,7 @@ export const initialTotal = {
   purchasedLevels: 0,
   receivedAchievements: 0,
   sapphires: 0,
+  reincarnatedTimes: 0,
   kills: {
     monsters: 0,
     bosses: 0,

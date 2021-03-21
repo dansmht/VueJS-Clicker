@@ -81,6 +81,9 @@ export default {
       }, {
         title: 'Received Sapphires:',
         value: this.total.sapphires,
+      }, {
+        title: 'Reincarnated Times:',
+        value: this.total.reincarnatedTimes,
       }];
     },
   },

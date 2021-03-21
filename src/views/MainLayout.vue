@@ -308,6 +308,7 @@ export default {
       });
     },
     reincarnate() {
+      this.total.reincarnatedTimes++;
       const tempSapphires = this.current.sapphires + this.current.inactiveSapphires;
       this.resetTimer(timersNames.reincarnation, 5);
       // reset current stats and upgrades

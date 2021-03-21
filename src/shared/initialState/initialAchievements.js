@@ -2,6 +2,10 @@ const killedMonsters = 'total.kills.monsters';
 const killedBosses = 'total.kills.bosses';
 const clickedTimes = 'total.clicks';
 const purchasedUpgradesLevels = 'total.purchasedLevels';
+const earnedSapphires = 'total.sapphires';
+const reincarnatedTimes = 'total.reincarnatedTimes';
+const earnedGold = 'total.gold';
+const dealedDamage = 'total.damage';
 
 export const initialAchievements = [{
   id: 1,
@@ -163,4 +167,132 @@ export const initialAchievements = [{
   hidden: true,
   property: purchasedUpgradesLevels,
   value: 666,
+}, {
+  id: 21,
+  name: 'Lucky bastard',
+  description: 'Get your first sapphire',
+  received: false,
+  hidden: false,
+  property: earnedSapphires,
+  value: 1,
+}, {
+  id: 22,
+  name: 'Miner',
+  description: 'Get 50 sapphires',
+  received: false,
+  hidden: false,
+  property: earnedSapphires,
+  value: 50,
+}, {
+  id: 23,
+  name: 'Jeweler',
+  description: 'Get 250 sapphires',
+  received: false,
+  hidden: false,
+  property: earnedSapphires,
+  value: 250,
+}, {
+  id: 24,
+  name: 'King of sparks',
+  description: 'Get 1000 sapphires',
+  received: false,
+  hidden: false,
+  property: earnedSapphires,
+  value: 1000,
+}, {
+  id: 25,
+  name: 'I\'m alive',
+  description: 'Reincarnate 1 time',
+  received: false,
+  hidden: false,
+  property: reincarnatedTimes,
+  value: 1,
+}, {
+  id: 26,
+  name: 'Immortal',
+  description: 'Reincarnate 5 times',
+  received: false,
+  hidden: false,
+  property: reincarnatedTimes,
+  value: 5,
+}, {
+  id: 27,
+  name: 'Legend',
+  description: 'Reincarnate 25 times',
+  received: false,
+  hidden: false,
+  property: reincarnatedTimes,
+  value: 25,
+}, {
+  id: 28,
+  name: 'Deity',
+  description: 'Reincarnate 50 times',
+  received: false,
+  hidden: false,
+  property: reincarnatedTimes,
+  value: 50,
+}, {
+  id: 29,
+  name: 'Scrooge McDuck',
+  description: 'Earn 1K gold',
+  received: false,
+  hidden: false,
+  property: earnedGold,
+  value: 1000,
+}, {
+  id: 30,
+  name: 'Rich',
+  description: 'Earn 1M gold',
+  received: false,
+  hidden: false,
+  property: earnedGold,
+  value: 1000000,
+}, {
+  id: 31,
+  name: 'Treasurer',
+  description: 'Earn 1B gold',
+  received: false,
+  hidden: false,
+  property: earnedGold,
+  value: 1000000000,
+}, {
+  id: 32,
+  name: 'Croesus',
+  description: 'Earn 1T gold',
+  received: false,
+  hidden: false,
+  property: earnedGold,
+  value: 1000000000000,
+}, {
+  id: 33,
+  name: 'Pain in the leg',
+  description: 'Deal 1K damage',
+  received: false,
+  hidden: false,
+  property: dealedDamage,
+  value: 1000,
+}, {
+  id: 34,
+  name: 'Bonecrusher',
+  description: 'Deal 1M damage',
+  received: false,
+  hidden: false,
+  property: dealedDamage,
+  value: 1000000,
+}, {
+  id: 35,
+  name: 'Thug',
+  description: 'Deal 1B damage',
+  received: false,
+  hidden: false,
+  property: dealedDamage,
+  value: 1000000000,
+}, {
+  id: 36,
+  name: 'Undertaker',
+  description: 'Deal 1T damage',
+  received: false,
+  hidden: false,
+  property: dealedDamage,
+  value: 1000000000000,
 }];
