@@ -5,7 +5,7 @@
         <li
           v-for="tab in tabs"
           :key="tab"
-          class="nav-list-item"
+          class="nav-list-item pointer"
           :class="{active: tab === activeBlock}"
           @click="changeActiveTab(tab)"
         >

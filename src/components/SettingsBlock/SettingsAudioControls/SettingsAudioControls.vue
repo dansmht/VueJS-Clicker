@@ -7,7 +7,7 @@
       <div class="main-controls">
         <div
           v-tooltip="'Previous'"
-          class="audio-control"
+          class="audio-control pointer"
           @click="skipAudio(-1)"
         >
           <svg
@@ -34,7 +34,7 @@
         <div
           v-if="isPlaying"
           v-tooltip="'Pause'"
-          class="audio-control"
+          class="audio-control pointer"
           @click="pause"
         >
           <svg
@@ -57,7 +57,7 @@
         <div
           v-else
           v-tooltip="'Play'"
-          class="audio-control"
+          class="audio-control pointer"
           @click="play"
         >
           <svg
@@ -75,7 +75,7 @@
         </div>
         <div
           v-tooltip="'Next'"
-          class="audio-control"
+          class="audio-control pointer"
           @click="skipAudio(1)"
         >
           <svg

@@ -5,7 +5,7 @@
     </h3>
     <div
       v-tooltip="`${formattedCurrHP} / ${formattedMaxHP}`"
-      class="health-wrapper"
+      class="health-wrapper help"
     >
       <div class="health-points">
         HP: {{ currHP }}/{{ maxHP }}

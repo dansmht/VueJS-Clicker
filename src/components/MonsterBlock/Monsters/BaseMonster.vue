@@ -1,6 +1,6 @@
 <template>
   <div
-    class="monster"
+    class="monster pointer"
     @click="onClickHandler"
   >
     <component :is="componentName" />

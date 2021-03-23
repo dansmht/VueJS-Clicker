@@ -2,7 +2,10 @@
   <div class="state-bar">
     <div class="container">
       <div class="gold">
-        <span v-tooltip="formattedGold">
+        <span
+          v-tooltip="formattedGold"
+          class="help"
+        >
           Gold: {{ abbreviatedGold }}
         </span>
       </div>

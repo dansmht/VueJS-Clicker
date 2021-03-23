@@ -8,8 +8,8 @@
         v-for="s in skills"
         :key="s.id"
         v-tooltip="s.received ? s.description : 'Locked'"
-        class="skills-list-item"
-        :class="{ready: s.received && getTimer(s.id) <= 0}"
+        class="skills-list-item help"
+        :class="{pointer: s.received && getTimer(s.id) <= 0}"
         @click="onClickHandler(s)"
       >
         <div

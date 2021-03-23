@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mute-button"
+    class="mute-button pointer"
     @click="toggleMute"
   >
     <svg

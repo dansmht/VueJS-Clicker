@@ -5,7 +5,7 @@
     </span>
     <span
       v-tooltip="`${value}`"
-      class="stats-value"
+      class="stats-value help"
     >
       {{ value }}
     </span>

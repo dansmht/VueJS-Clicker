@@ -12,7 +12,10 @@
       </h4>
       <p class="text">
         {{ description }}
-        <span v-tooltip="formattedValue">
+        <span
+          v-tooltip="formattedValue"
+          class="help"
+        >
           {{ abbreviatedValue }}
         </span>
       </p>
@@ -21,7 +24,10 @@
           Level: {{ level }}
         </p>
         <p class="param cost">
-          <span v-tooltip="formattedCost">
+          <span
+            v-tooltip="formattedCost"
+            class="help"
+          >
             Cost: {{ abbreviatedCost }}
           </span>
         </p>
@@ -30,7 +36,11 @@
     <div
       v-tooltip="!isAvailable && 'You don\'t have enough gold'"
       class="icon"
-      :class="{scalable: isAvailable}"
+      :class="{
+        scalable: isAvailable,
+        pointer: isAvailable,
+        help: !isAvailable
+      }"
       @click="onClickHandler"
     >
       <component

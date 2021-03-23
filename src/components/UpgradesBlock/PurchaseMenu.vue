@@ -7,7 +7,7 @@
       <li
         v-for="item in items"
         :key="item.text"
-        class="list-item"
+        class="list-item pointer"
         :class="{active: purchaseCount === item.value}"
         @click="onClickHandler(item.value)"
       >

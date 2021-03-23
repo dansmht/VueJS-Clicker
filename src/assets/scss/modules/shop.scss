@@ -17,10 +17,9 @@
         margin-left: 5px;
       }
 
-      &.ready:hover {
+      &.pointer:hover {
         background: var(--font-main-color);
         color: var(--darkest-color);
-        cursor: pointer;
       }
     }
 

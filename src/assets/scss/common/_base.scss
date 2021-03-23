@@ -35,6 +35,7 @@ main {
 body {
   background: var(--primary-color);
   font-size: var(--default-font);
+  cursor: url('../cursors/default.svg') 26 26, default;
 }
 
 .container {
@@ -47,4 +48,12 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.help {
+  cursor: url('../cursors/help.svg') 6 6, help;
+}
+
+.pointer {
+  cursor: url('../cursors/pointer.svg') 8 0, pointer;
 }

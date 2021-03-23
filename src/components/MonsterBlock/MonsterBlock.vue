@@ -19,7 +19,6 @@
       @toggleBerserkMode="$emit('toggleBerserkMode')"
       @executeMonster="executeMonster"
     />
-    {{ monsterIndex }}
   </div>
 </template>
 

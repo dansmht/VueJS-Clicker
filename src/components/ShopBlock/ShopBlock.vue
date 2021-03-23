@@ -5,7 +5,7 @@
         <li
           v-if="inactiveSapphires"
           class="reincarnate-button"
-          :class="{ready: reincarnationTimer <= 0}"
+          :class="{pointer: reincarnationTimer <= 0}"
           @click="reincarnate"
         >
           Reincarnate (you will receive {{ inactiveSapphires }} material sapphires)
@@ -31,6 +31,7 @@
               <span
                 v-if="imp.duration"
                 v-tooltip="getDuration(imp.duration)"
+                class="help"
                 style="white-space: nowrap"
               >(duration: {{ getDuration(imp.duration) }})</span>
             </p>
@@ -46,7 +47,11 @@
           <div
             v-tooltip="imp.cost > sapphires && 'You don\'t have enough sapphires'"
             class="icon"
-            :class="{scalable: imp.cost <= sapphires}"
+            :class="{
+              scalable: imp.cost <= sapphires,
+              pointer: imp.cost <= sapphires,
+              help: imp.cost > sapphires
+            }"
             @click="onClickHandler(imp.cost, imp.id, imp.type)"
           >
             <icon-plus :color="getIconColor(imp.cost)" />

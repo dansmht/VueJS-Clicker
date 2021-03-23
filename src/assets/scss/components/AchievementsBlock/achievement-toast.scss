@@ -4,7 +4,7 @@
   align-items: center;
   margin-right: 10px;
   padding: 10px 20px;
-  cursor: pointer;
+  cursor: url('../cursors/pointer.svg') 8 0, pointer;
 
   .toast-text {
     margin-left: 20px;

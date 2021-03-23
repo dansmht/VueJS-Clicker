@@ -7,7 +7,7 @@ export const initialSkills = [{
   duration: convertMinutesToMs(0.5),
   cost: 1,
   cooldownTimeInMinutes: 1,
-  received: false,
+  received: true,
 }, {
   id: 4,
   name: 'Greed',
